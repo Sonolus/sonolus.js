@@ -1,0 +1,9 @@
+{
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "cSpell.words": [
+        "Smoothstep"
+    ],
+    "search.exclude": {
+        "**/dist": true
+    }
+}

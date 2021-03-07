@@ -1,0 +1,29 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "prettier"
+    ],
+    "plugins": [
+        "@typescript-eslint",
+        "prettier",
+        "unused-imports",
+        "simple-import-sort"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2021
+    },
+    "rules": {
+        "prettier/prettier": "error",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": false
+            }
+        ],
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error"
+    }
+}
