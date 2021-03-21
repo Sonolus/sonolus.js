@@ -4,6 +4,7 @@ TypeScript based Developer Toolkit for Sonolus.
 
 ## Links
 
+-   [Sonolus.js Guide](https://github.com/NonSpicyBurrito/sonolus.js-guide)
 -   [Sonolus Website](https://sonolus.com)
 -   [Sonolus Wiki](https://github.com/NonSpicyBurrito/sonolus-wiki)
 
