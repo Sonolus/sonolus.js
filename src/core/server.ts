@@ -18,6 +18,7 @@ export function serve(
 ) {
     const engineInfo = {
         name: '0',
+        version: 1,
         title: 'Engine',
         subtitle: 'Unknown',
         author: 'Unknown',
@@ -38,6 +39,7 @@ export function serve(
 
     const levelInfo = {
         name: '0',
+        version: 1,
         rating: 0,
         engine: engineInfo,
         useSkin: { useDefault: true },
@@ -58,7 +60,7 @@ export function serve(
     const app = express()
 
     app.use((req, res, next) => {
-        res.set('Sonolus-Version', '0.5.0')
+        res.set('Sonolus-Version', '0.5.1')
         next()
     })
 
@@ -75,7 +77,7 @@ export function serve(
 
     app.get('/levels/0', (req, res) => {
         res.json({
-            ...levelInfo,
+            item: levelInfo,
             description: '',
             recommended: [],
         })
