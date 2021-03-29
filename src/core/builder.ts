@@ -53,8 +53,11 @@ export function build(buildInput: BuildInput): BuildOutput {
                         ...(input == undefined ? {} : { input }),
                     })
                 ),
-                scripts: buildInput.engine.data.scripts.map((script) =>
-                    Object.fromEntries(
+                scripts: buildInput.engine.data.scripts.map((script) => {
+                    if (typeof script === 'function') {
+                        script = script()
+                    }
+                    return Object.fromEntries(
                         (Object.entries(script) as [string, SCallback][]).map(
                             ([key, { code: callback, order }]) => [
                                 key,
@@ -65,7 +68,7 @@ export function build(buildInput: BuildInput): BuildOutput {
                             ]
                         )
                     )
-                ),
+                }),
                 nodes,
             }),
         },

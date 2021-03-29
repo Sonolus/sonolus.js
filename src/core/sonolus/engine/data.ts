@@ -5,5 +5,5 @@ import { SScript } from './script'
 export type SEngineData = {
     buckets: SBucket[]
     archetypes: SArchetype[]
-    scripts: SScript[]
+    scripts: (SScript | (() => SScript))[]
 }

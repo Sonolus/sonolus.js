@@ -46,9 +46,9 @@ export function defineArchetypes<T extends { [key: string]: SArchetype }>(
     return toArrayWithIndex(keyedArchetypes)
 }
 
-export function defineScripts<T extends { [key: string]: SScript }>(
-    keyedScripts: T
-) {
+export function defineScripts<
+    T extends { [key: string]: SScript | (() => SScript) }
+>(keyedScripts: T) {
     return toArrayWithIndex(keyedScripts)
 }
 
