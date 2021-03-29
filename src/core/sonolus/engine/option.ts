@@ -1,6 +1,6 @@
 export type SOption = SSliderOption | SToggleOption
 
-type SSliderOption = {
+export type SSliderOption = {
     name: string
     standard?: boolean
     scope?: string
@@ -12,7 +12,7 @@ type SSliderOption = {
     display: 'number' | 'percentage'
 }
 
-type SToggleOption = {
+export type SToggleOption = {
     name: string
     standard?: boolean
     scope?: string
