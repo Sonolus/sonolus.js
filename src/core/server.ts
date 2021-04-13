@@ -60,7 +60,7 @@ export function serve(
     const app = express()
 
     app.use((req, res, next) => {
-        res.set('Sonolus-Version', '0.5.1')
+        res.set('Sonolus-Version', '0.5.2')
         next()
     })
 
