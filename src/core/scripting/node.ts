@@ -1,9 +1,6 @@
 import { DataType } from './dataType'
 
-export type Node<T extends DataType = DataType> = (FuncNode | ValueNode<T>) & {
-    marker?: string
-    index?: number
-}
+export type Node<T extends DataType = DataType> = FuncNode | ValueNode<T>
 
 export class FuncNode {
     public func: string

@@ -1,70 +1,69 @@
+import { convert } from './scripting'
 import { Code, parse } from './scripting/code'
-import { convert } from './scripting/dataType'
 import { Node } from './scripting/node'
 import { SNode } from './sonolus/node'
 
-export function compile(
-    code: Code,
-    nodes: SNode[],
-    markers: [string, number][] = []
-): number {
-    const index = insert(parse(code), nodes, markers)
+export type CompileEnvironment = {
+    nodes: SNode[]
+    cache?: Map<string, number>
+}
 
-    nodes.forEach((node) => delete node.marker)
+export function compile(code: Code, environment: CompileEnvironment): number {
+    if (!environment.cache) {
+        environment.cache = new Map()
+    }
 
-    return index
+    return insert(parse(code), environment).index
 }
 
 function insert(
     node: Node,
-    nodes: SNode[],
-    markers: [string, number][]
-): number {
-    if (node.index !== undefined) {
-        return node.index
-    } else {
-        if ('func' in node) {
-            const args: number[] = []
-            const index =
-                nodes.push({
+    environment: CompileEnvironment
+): {
+    id: string
+    index: number
+} {
+    if ('func' in node) {
+        const results = node.args.map((arg) => insert(arg, environment))
+        const id = `${node.func}(${results.map(({ id }) => id).join(',')})`
+        return {
+            id,
+            index: getOrAddIndex(
+                id,
+                () => ({
                     func: node.func,
-                    args,
-                    marker: node.marker,
-                }) - 1
-            node.index = index
-
-            if (node.marker !== undefined) {
-                markers.push([node.marker, index])
-            }
-
-            node.args.forEach((arg) => args.push(insert(arg, nodes, markers)))
-
-            return index
-        } else {
-            const value = convert(node.value)
-            const existingIndex =
-                node.marker !== undefined
-                    ? -1
-                    : nodes.findIndex(
-                          (node) =>
-                              'value' in node &&
-                              node.value === value &&
-                              node.marker === undefined
-                      )
-            const index =
-                existingIndex === -1
-                    ? nodes.push({
-                          value,
-                          marker: node.marker,
-                      }) - 1
-                    : existingIndex
-            node.index = index
-
-            if (node.marker !== undefined) {
-                markers.push([node.marker, index])
-            }
-
-            return index
+                    args: results.map(({ index }) => index),
+                }),
+                environment
+            ),
         }
+    } else {
+        const value = convert(node.value)
+        const id = value.toString()
+        return {
+            id,
+            index: getOrAddIndex(
+                id,
+                () => ({
+                    value,
+                }),
+                environment
+            ),
+        }
+    }
+}
+
+function getOrAddIndex(
+    id: string,
+    create: () => SNode,
+    environment: CompileEnvironment
+) {
+    const index = environment.cache!.get(id)
+    if (index !== undefined) {
+        return index
+    } else {
+        const newIndex = environment.nodes.push(create()) - 1
+        environment.cache!.set(id, newIndex)
+        return newIndex
     }
 }

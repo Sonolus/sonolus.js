@@ -1,4 +1,4 @@
-export type SNode = (SFuncNode | SValueNode) & { marker?: string }
+export type SNode = SFuncNode | SValueNode
 
 export type SFuncNode = {
     func: string

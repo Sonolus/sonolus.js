@@ -1,14 +1,13 @@
 import * as crypto from 'crypto'
 import { gzipSync } from 'zlib'
 
-import { compile } from './compiler'
+import { compile, CompileEnvironment } from './compiler'
 import { convert } from './scripting/dataType'
 import { SData } from './sonolus/data'
 import { SEngineConfiguration } from './sonolus/engine/configuration'
 import { SEngineData } from './sonolus/engine/data'
 import { SCallback } from './sonolus/engine/script'
 import { SLevelData } from './sonolus/level/data'
-import { SNode } from './sonolus/node'
 
 export type BuildInput = {
     engine: {
@@ -37,7 +36,9 @@ export type Resource = {
 }
 
 export function build(buildInput: BuildInput): BuildOutput {
-    const nodes: SNode[] = []
+    const compileEnvironment: CompileEnvironment = {
+        nodes: [],
+    }
     return {
         engine: {
             configuration: compress(buildInput.engine.configuration),
@@ -62,14 +63,17 @@ export function build(buildInput: BuildInput): BuildOutput {
                             ([key, { code: callback, order }]) => [
                                 key,
                                 {
-                                    index: compile(callback, nodes),
+                                    index: compile(
+                                        callback,
+                                        compileEnvironment
+                                    ),
                                     ...(order == undefined ? {} : { order }),
                                 },
                             ]
                         )
                     )
                 }),
-                nodes,
+                nodes: compileEnvironment.nodes,
             }),
         },
 
