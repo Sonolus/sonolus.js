@@ -5,7 +5,9 @@ import { FuncNode, Node } from '../node'
 
 export function Execute<T extends DataType>(
     ...exprs: [...Code[], Code<T>]
-): Node<T> {
+): Node<T>
+export function Execute<T extends DataType>(...exprs: Code<T>[]): Node<T>
+export function Execute(...exprs: Code[]) {
     if (exprs.length > 1) {
         return new FuncNode(
             'Execute',
@@ -17,6 +19,6 @@ export function Execute<T extends DataType>(
                 .flat()
         )
     } else {
-        return parse(exprs[0] as Code<T>)
+        return parse(exprs[0])
     }
 }

@@ -7,12 +7,13 @@ export type Code<T extends DataType = DataType> =
     | Node<T>
     | T
     | [...Code[], Code<T>]
+    | Code<T>[]
     | Pointer<T>
 
 export function parse<T extends DataType>(code: Code<T>): Node<T> {
     if (typeof code === 'object') {
         if (Array.isArray(code)) {
-            return Execute(...code)
+            return Execute(...(code as Code<T>[]))
         } else if (code instanceof Pointer) {
             return code.get()
         } else {
