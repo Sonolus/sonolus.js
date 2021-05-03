@@ -3,20 +3,15 @@ import { Execute } from '../functions/execute'
 import { Multiply } from '../functions/multiply'
 import { Node } from '../node'
 import { Pointer } from '../pointer'
+import { createArrayBlock } from './arrayBlock'
 
-export class Bucket {
-    private _pointer: Pointer
-
-    public constructor(index: Code<number>) {
-        this._pointer = LevelBucket.to(Multiply(index, 6))
-    }
-
-    public set(
+export class LevelBucketPointer extends Pointer {
+    public setBucket(
         maxPerfect: Code<number>,
         maxGreat: Code<number>,
         maxGood: Code<number>
     ): Node<0>
-    public set(
+    public setBucket(
         minPerfect: Code<number>,
         maxPerfect: Code<number>,
         minGreat: Code<number>,
@@ -24,7 +19,7 @@ export class Bucket {
         minGood: Code<number>,
         maxGood: Code<number>
     ): Node<0>
-    public set(
+    public setBucket(
         arg1: Code<number>,
         arg2: Code<number>,
         arg3: Code<number>,
@@ -54,28 +49,28 @@ export class Bucket {
     }
 
     public get minPerfect() {
-        return this._pointer.to<number>(0)
+        return this.to<number>(0)
     }
 
     public get maxPerfect() {
-        return this._pointer.to<number>(1)
+        return this.to<number>(1)
     }
 
     public get minGreat() {
-        return this._pointer.to<number>(2)
+        return this.to<number>(2)
     }
 
     public get maxGreat() {
-        return this._pointer.to<number>(3)
+        return this.to<number>(3)
     }
 
     public get minGood() {
-        return this._pointer.to<number>(4)
+        return this.to<number>(4)
     }
 
     public get maxGood() {
-        return this._pointer.to<number>(5)
+        return this.to<number>(5)
     }
 }
 
-export const LevelBucket = new Pointer(6)
+export const LevelBucket = createArrayBlock(LevelBucketPointer, 6, 6)

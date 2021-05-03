@@ -1,5 +1,5 @@
 import { Pointer } from '../pointer'
-import { createArrayBlock } from './arrayBlock'
+import { createArrayBlockWithSelf } from './arrayBlock'
 
 export enum State {
     Waiting = 0,
@@ -21,4 +21,4 @@ export class EntityInfoPointer extends Pointer {
     }
 }
 
-export const EntityInfo = createArrayBlock(EntityInfoPointer, 20, 10, 3)
+export const EntityInfo = createArrayBlockWithSelf(EntityInfoPointer, 20, 10, 3)

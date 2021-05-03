@@ -1,29 +1,22 @@
-import { Code } from '../code'
-import { Multiply } from '../functions/multiply'
 import { Pointer } from '../pointer'
+import { createArrayBlock } from './arrayBlock'
 
-export class Life {
-    private _pointer: Pointer
-
-    public constructor(index: Code<number>) {
-        this._pointer = ArchetypeLife.to(Multiply(index, 4))
-    }
-
+export class ArchetypeLifePointer extends Pointer {
     public get perfectLifeIncrement() {
-        return this._pointer.to<number>(0)
+        return this.to<number>(0)
     }
 
     public get greatLifeIncrement() {
-        return this._pointer.to<number>(1)
+        return this.to<number>(1)
     }
 
     public get goodLifeIncrement() {
-        return this._pointer.to<number>(2)
+        return this.to<number>(2)
     }
 
     public get missLifeIncrement() {
-        return this._pointer.to<number>(3)
+        return this.to<number>(3)
     }
 }
 
-export const ArchetypeLife = new Pointer(30)
+export const ArchetypeLife = createArrayBlock(ArchetypeLifePointer, 30, 4)

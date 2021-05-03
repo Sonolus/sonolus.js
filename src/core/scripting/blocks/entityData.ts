@@ -1,8 +1,8 @@
 import { Pointer, PointerConstructor } from '../pointer'
-import { createArrayBlock } from './arrayBlock'
+import { createArrayBlockWithSelf } from './arrayBlock'
 
 export function createEntityData<T extends Pointer>(
     ctor: PointerConstructor<T>
 ) {
-    return createArrayBlock(ctor, 22, 11, 32)
+    return createArrayBlockWithSelf(ctor, 22, 11, 32)
 }
