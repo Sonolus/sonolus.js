@@ -1,7 +1,5 @@
-import express from 'express'
-import { Express } from 'express'
-import { NetworkInterfaceInfo } from 'os'
-import { networkInterfaces } from 'os'
+import express, { Express } from 'express'
+import { NetworkInterfaceInfo, networkInterfaces } from 'os'
 import { resolve } from 'path'
 
 import { BuildOutput } from './builder'
@@ -18,7 +16,7 @@ export function serve(
 ) {
     const engineInfo = {
         name: '0',
-        version: 1,
+        version: 2,
         title: 'Engine',
         subtitle: 'Unknown',
         author: 'Unknown',
@@ -60,7 +58,7 @@ export function serve(
     const app = express()
 
     app.use((req, res, next) => {
-        res.set('Sonolus-Version', '0.5.2')
+        res.set('Sonolus-Version', '0.5.3')
         next()
     })
 

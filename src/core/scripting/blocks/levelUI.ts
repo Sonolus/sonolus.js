@@ -9,17 +9,11 @@ export enum HorizontalAlign {
     Right = 1,
 }
 
-export enum VerticalAlign {
-    Bottom = -1,
-    Middle = 0,
-    Top = 1,
-}
-
 class UI {
     private _pointer: Pointer
 
     public constructor(index: number) {
-        this._pointer = LevelUI[index * 11]
+        this._pointer = LevelUI[index * 10]
     }
 
     public set(
@@ -32,7 +26,6 @@ class UI {
         rotation: Code<number>,
         alpha: Code<number>,
         horizontalAlign: Code<HorizontalAlign>,
-        verticalAlign: Code<VerticalAlign>,
         background: Code<boolean>
     ): Node<0> {
         return Execute(
@@ -45,7 +38,6 @@ class UI {
             this.rotation.set(rotation),
             this.alpha.set(alpha),
             this.horizontalAlign.set(horizontalAlign),
-            this.verticalAlign.set(verticalAlign),
             this.background.set(background)
         )
     }
@@ -86,12 +78,8 @@ class UI {
         return this._pointer.to<HorizontalAlign>(8)
     }
 
-    public get verticalAlign() {
-        return this._pointer.to<VerticalAlign>(9)
-    }
-
     public get background() {
-        return this._pointer.to<boolean>(10)
+        return this._pointer.to<boolean>(9)
     }
 }
 

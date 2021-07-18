@@ -8,6 +8,7 @@ export type SScript = {
     updateSequential?: SCallback
     touch?: SCallback
     updateParallel?: SCallback
+    terminate?: SCallback
 }
 
 export type SCallback = {
