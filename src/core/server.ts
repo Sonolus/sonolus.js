@@ -1,4 +1,5 @@
-import express, { Express } from 'express'
+import * as express from 'express'
+import { Express } from 'express'
 import { NetworkInterfaceInfo, networkInterfaces } from 'os'
 import { resolve } from 'path'
 import { BuildOutput } from './builder'
