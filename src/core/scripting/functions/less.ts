@@ -1,5 +1,4 @@
-import { Code } from '../code'
-import { parse } from '../code'
+import { Code, parse } from '../code'
 import { DataType } from '../dataType'
 import { FuncNode, Node } from '../node'
 

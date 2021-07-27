@@ -48,27 +48,27 @@ export class LevelBucketPointer extends Pointer {
         }
     }
 
-    public get minPerfect() {
+    public get minPerfect(): Pointer<number> {
         return this.to<number>(0)
     }
 
-    public get maxPerfect() {
+    public get maxPerfect(): Pointer<number> {
         return this.to<number>(1)
     }
 
-    public get minGreat() {
+    public get minGreat(): Pointer<number> {
         return this.to<number>(2)
     }
 
-    public get maxGreat() {
+    public get maxGreat(): Pointer<number> {
         return this.to<number>(3)
     }
 
-    public get minGood() {
+    public get minGood(): Pointer<number> {
         return this.to<number>(4)
     }
 
-    public get maxGood() {
+    public get maxGood(): Pointer<number> {
         return this.to<number>(5)
     }
 }

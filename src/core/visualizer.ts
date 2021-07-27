@@ -1,7 +1,5 @@
 import { format } from 'prettier'
-
-import { Code } from './scripting/code'
-import { parse } from './scripting/code'
+import { Code, parse } from './scripting/code'
 import { convert } from './scripting/dataType'
 import { Node } from './scripting/node'
 

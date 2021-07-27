@@ -1,5 +1,4 @@
-import { Code } from '../code'
-import { parse } from '../code'
+import { Code, parse } from '../code'
 import { FuncNode, Node } from '../node'
 
 export enum Edge {
@@ -90,6 +89,8 @@ export function DrawCurved(
             ])
         case Edge.LR:
         case Edge.BT:
+            if (!cx2 || !cy2) throw 'Unexpected missing argument: cx2, cy2'
+
             return new FuncNode(functionName, [
                 parse(id),
                 parse(x1),
@@ -105,8 +106,8 @@ export function DrawCurved(
                 parse(n),
                 parse(cx1),
                 parse(cy1),
-                parse(cx2!),
-                parse(cy2!),
+                parse(cx2),
+                parse(cy2),
             ])
     }
 }

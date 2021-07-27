@@ -1,7 +1,6 @@
 import express, { Express } from 'express'
 import { NetworkInterfaceInfo, networkInterfaces } from 'os'
 import { resolve } from 'path'
-
 import { BuildOutput } from './builder'
 import { SRL } from './sonolus/srl'
 
@@ -13,7 +12,7 @@ export function serve(
         levelCover?: SRL
         levelBgm?: SRL
     } = {}
-) {
+): void {
     const engineInfo = {
         name: '0',
         version: 2,
@@ -119,9 +118,11 @@ function tryListen(app: Express, port: number, callback: () => void) {
     app.listen(port, () => {
         console.log('Server available at:')
         console.log(
-            (Object.values(
-                networkInterfaces()
-            ).flat() as NetworkInterfaceInfo[])
+            (
+                Object.values(
+                    networkInterfaces()
+                ).flat() as NetworkInterfaceInfo[]
+            )
                 .filter(({ family }) => family === 'IPv4')
                 .map(({ address }) => `http://${address}:${port}`)
                 .join('\n')

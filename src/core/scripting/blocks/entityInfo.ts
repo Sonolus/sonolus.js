@@ -8,15 +8,15 @@ export enum State {
 }
 
 export class EntityInfoPointer extends Pointer {
-    public get index() {
+    public get index(): Pointer<number> {
         return this.to<number>(0)
     }
 
-    public get archetype() {
+    public get archetype(): Pointer<number> {
         return this.to<number>(1)
     }
 
-    public get state() {
+    public get state(): Pointer<State> {
         return this.to<State>(2)
     }
 }

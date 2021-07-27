@@ -1,5 +1,4 @@
-import { Code } from '../code'
-import { parse } from '../code'
+import { Code, parse } from '../code'
 import { FuncNode, Node } from '../node'
 
 export function Ceil(expr: Code<number>): Node<number> {

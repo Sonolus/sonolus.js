@@ -6,7 +6,9 @@ export function createArrayBlock<T extends Pointer>(
     ctor: PointerConstructor<T>,
     id: number,
     elementSize: number
-) {
+): Pointer & {
+    of(index: Code<number>): T
+} {
     return new Proxy(new Pointer(id), {
         get(target, prop) {
             return prop === 'of'
@@ -24,7 +26,9 @@ export function createArrayBlockWithSelf<T extends Pointer>(
     idSelf: number,
     idArray: number,
     elementSize: number
-) {
+): T & {
+    of(index: Code<number>): T
+} {
     return new Proxy(new ctor(idSelf), {
         get(target, prop) {
             return prop === 'of'

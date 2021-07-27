@@ -1,29 +1,15 @@
 {
     "parser": "@typescript-eslint/parser",
-    "extends": [
-        "prettier"
-    ],
     "plugins": [
         "@typescript-eslint",
-        "prettier",
-        "unused-imports",
-        "simple-import-sort"
+        "prettier"
     ],
-    "parserOptions": {
-        "ecmaVersion": 2021
-    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
     "rules": {
-        "prettier/prettier": "error",
-        "unused-imports/no-unused-imports": "error",
-        "unused-imports/no-unused-vars": [
-            "error",
-            {
-                "vars": "all",
-                "args": "after-used",
-                "ignoreRestSiblings": false
-            }
-        ],
-        "simple-import-sort/imports": "error",
-        "simple-import-sort/exports": "error"
+      "prettier/prettier": "error"
     }
 }

@@ -58,12 +58,14 @@ function getOrAddIndex(
     create: () => SNode,
     environment: CompileEnvironment
 ) {
-    const index = environment.cache!.get(id)
+    if (!environment.cache) throw 'Unexpected missing environment cache'
+
+    const index = environment.cache.get(id)
     if (index !== undefined) {
         return index
     } else {
         const newIndex = environment.nodes.push(create()) - 1
-        environment.cache!.set(id, newIndex)
+        environment.cache.set(id, newIndex)
         return newIndex
     }
 }

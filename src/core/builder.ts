@@ -1,7 +1,6 @@
-import * as crypto from 'crypto'
 import { gzipSync } from 'zlib'
-
 import { compile, CompileEnvironment } from './compiler'
+import { hash } from './hasher'
 import { convert } from './scripting/dataType'
 import { SData } from './sonolus/data'
 import { SEngineConfiguration } from './sonolus/engine/configuration'
@@ -92,9 +91,7 @@ export function build(buildInput: BuildInput): BuildOutput {
     }
 }
 
-function convertData(
-    data: SData
-): {
+function convertData(data: SData): {
     index: number
     values: number[]
 } {
@@ -104,11 +101,10 @@ function convertData(
     }
 }
 
-function compress(data: any): Resource {
+function compress(data: unknown): Resource {
     const buffer = gzipSync(JSON.stringify(data), { level: 9 })
-    const hash = crypto.createHash('sha1').update(buffer).digest('hex')
     return {
         buffer,
-        hash,
+        hash: hash(buffer),
     }
 }
