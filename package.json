@@ -15,11 +15,12 @@
   ],
   "scripts": {
     "lint": "eslint --ext .ts src/",
-    "build": "tsc -p . && copyfiles ./res/*.* ./dist/"
+    "build": "tsc -p . && copyfiles ./res/** ./dist/"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "sonolus-express": "^0.1.4"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

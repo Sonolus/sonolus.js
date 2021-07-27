@@ -2,87 +2,75 @@ import * as express from 'express'
 import { Express } from 'express'
 import { NetworkInterfaceInfo, networkInterfaces } from 'os'
 import { resolve } from 'path'
+import { Sonolus } from 'sonolus-express'
 import { BuildOutput } from './builder'
-import { SRL } from './sonolus/srl'
 
 export function serve(
     buildOutput: BuildOutput,
     serverConfig: {
         port?: number
-        staticPath?: string
-        levelCover?: SRL
-        levelBgm?: SRL
     } = {}
-): void {
-    const engineInfo = {
-        name: '0',
+): Sonolus {
+    const app = express()
+
+    const sonolus = new Sonolus(app, {
+        version: '0.5.3',
+    })
+
+    sonolus.load(resolve(__dirname, '../res/pack'))
+
+    sonolus.db.engines.push({
+        name: 'dev',
         version: 2,
-        title: 'Engine',
-        subtitle: 'Unknown',
-        author: 'Unknown',
-        thumbnail: {},
+        title: { en: 'Dev Engine' },
+        subtitle: { en: 'Unknown' },
+        author: { en: 'Unknown' },
+        description: {},
+        thumbnail: {
+            type: 'EngineThumbnail',
+            hash: '',
+            url: '',
+        },
         data: {
             type: 'EngineData',
-            url: `/EngineData`,
+            hash: '',
+            url: '/EngineData',
         },
         configuration: {
             type: 'EngineConfiguration',
-            url: `/EngineConfiguration`,
+            hash: '',
+            url: '/EngineConfiguration',
         },
-        skin: {},
-        background: {},
-        effect: {},
-        particle: {},
-    }
+        skin: 'dev',
+        background: 'dev',
+        effect: 'dev',
+        particle: 'dev',
+    })
 
-    const levelInfo = {
-        name: '0',
+    sonolus.db.levels.push({
+        name: 'dev',
         version: 1,
         rating: 0,
-        engine: engineInfo,
+        engine: 'dev',
         useSkin: { useDefault: true },
         useBackground: { useDefault: true },
         useEffect: { useDefault: true },
         useParticle: { useDefault: true },
-        title: 'Level',
-        artists: 'Unknown',
-        author: 'Unknown',
-        cover: serverConfig.levelCover || { type: '' },
-        bgm: serverConfig.levelBgm || { type: 'LevelBgm', url: '/LevelBgm' },
+        title: { en: 'Dev Level' },
+        artists: { en: 'Unknown' },
+        author: { en: 'Unknown' },
+        description: {},
+        cover: {
+            type: 'LevelCover',
+            hash: '',
+            url: '',
+        },
+        bgm: sonolus.add('LevelBgm', resolve(__dirname, '../res/silence.mp3')),
         data: {
             type: 'LevelData',
-            url: `/LevelData`,
+            hash: '',
+            url: '/LevelData',
         },
-    }
-
-    const app = express()
-
-    app.use((req, res, next) => {
-        res.set('Sonolus-Version', '0.5.3')
-        next()
-    })
-
-    app.get('/info', (req, res) => {
-        res.json({
-            levels: [levelInfo],
-            skins: [],
-            backgrounds: [],
-            effects: [],
-            particles: [],
-            engines: [],
-        })
-    })
-
-    app.get('/levels/0', (req, res) => {
-        res.json({
-            item: levelInfo,
-            description: '',
-            recommended: [],
-        })
-    })
-
-    app.get('/LevelBgm', (req, res) => {
-        res.sendFile(resolve(__dirname, '../res/silence.mp3'))
     })
 
     app.get('/LevelData', (req, res) => {
@@ -97,10 +85,6 @@ export function serve(
         res.send(buildOutput.engine.configuration.buffer)
     })
 
-    if (serverConfig.staticPath) {
-        app.use('/static', express.static(serverConfig.staticPath))
-    }
-
     app.use((req, res) => {
         res.status(404).end()
     })
@@ -113,6 +97,8 @@ export function serve(
         console.log(buildOutput.engine.data.hash, 'EngineData')
         console.log(buildOutput.level.data.hash, 'LevelData')
     })
+
+    return sonolus
 }
 
 function tryListen(app: Express, port: number, callback: () => void) {
