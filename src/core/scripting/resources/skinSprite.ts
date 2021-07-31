@@ -1,5 +1,5 @@
 export enum SkinSprite {
-    NoteHeadBase = 1000,
+    NoteHeadNeutral = 1000,
     NoteHeadRed,
     NoteHeadGreen,
     NoteHeadBlue,
@@ -7,7 +7,7 @@ export enum SkinSprite {
     NoteHeadPurple,
     NoteHeadCyan,
 
-    NoteTickBase = 2000,
+    NoteTickNeutral = 2000,
     NoteTickRed,
     NoteTickGreen,
     NoteTickBlue,
@@ -15,7 +15,7 @@ export enum SkinSprite {
     NoteTickPurple,
     NoteTickCyan,
 
-    NoteTailBase = 3000,
+    NoteTailNeutral = 3000,
     NoteTailRed,
     NoteTailGreen,
     NoteTailBlue,
@@ -23,7 +23,7 @@ export enum SkinSprite {
     NoteTailPurple,
     NoteTailCyan,
 
-    NoteConnectionBase = 11000,
+    NoteConnectionNeutral = 11000,
     NoteConnectionRed,
     NoteConnectionGreen,
     NoteConnectionBlue,
@@ -31,7 +31,15 @@ export enum SkinSprite {
     NoteConnectionPurple,
     NoteConnectionCyan,
 
-    SimultaneousConnectionBase = 12000,
+    NoteConnectionNeutralSeamless = 11100,
+    NoteConnectionRedSeamless,
+    NoteConnectionGreenSeamless,
+    NoteConnectionBlueSeamless,
+    NoteConnectionYellowSeamless,
+    NoteConnectionPurpleSeamless,
+    NoteConnectionCyanSeamless,
+
+    SimultaneousConnectionNeutral = 12000,
     SimultaneousConnectionRed,
     SimultaneousConnectionGreen,
     SimultaneousConnectionBlue,
@@ -39,7 +47,15 @@ export enum SkinSprite {
     SimultaneousConnectionPurple,
     SimultaneousConnectionCyan,
 
-    DirectionalMarkerBase = 21000,
+    SimultaneousConnectionNeutralSeamless = 12100,
+    SimultaneousConnectionRedSeamless,
+    SimultaneousConnectionGreenSeamless,
+    SimultaneousConnectionBlueSeamless,
+    SimultaneousConnectionYellowSeamless,
+    SimultaneousConnectionPurpleSeamless,
+    SimultaneousConnectionCyanSeamless,
+
+    DirectionalMarkerNeutral = 21000,
     DirectionalMarkerRed,
     DirectionalMarkerGreen,
     DirectionalMarkerBlue,
@@ -47,7 +63,7 @@ export enum SkinSprite {
     DirectionalMarkerPurple,
     DirectionalMarkerCyan,
 
-    SimultaneousMarkerBase = 22000,
+    SimultaneousMarkerNeutral = 22000,
     SimultaneousMarkerRed,
     SimultaneousMarkerGreen,
     SimultaneousMarkerBlue,
@@ -68,7 +84,13 @@ export enum SkinSprite {
     StageBottomRightCorner = 40010,
 
     Lane = 40100,
+    LaneSeamless = 40110,
+
+    LaneAlternative = 40200,
+    LaneAlternativeSeamless = 40210,
+
     JudgmentLine = 41000,
     NoteSlot = 41001,
+
     StageCover = 42000,
 }
