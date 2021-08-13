@@ -14,7 +14,7 @@ export function serve(
     const app = express()
 
     const sonolus = new Sonolus(app, {
-        version: '0.5.4',
+        version: '0.5.5',
     })
 
     sonolus.load(resolve(__dirname, '../res/pack'))
