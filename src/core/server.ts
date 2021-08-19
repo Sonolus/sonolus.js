@@ -14,14 +14,14 @@ export function serve(
     const app = express()
 
     const sonolus = new Sonolus(app, {
-        version: '0.5.5',
+        version: '0.5.6',
     })
 
     sonolus.load(resolve(__dirname, '../res/pack'))
 
     sonolus.db.engines.push({
         name: 'dev',
-        version: 2,
+        version: 3,
         title: { en: 'Dev Engine' },
         subtitle: { en: 'Unknown' },
         author: { en: 'Unknown' },
