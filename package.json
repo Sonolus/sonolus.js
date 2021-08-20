@@ -1,6 +1,6 @@
 {
   "name": "sonolus.js",
-  "version": "2.1.1",
+  "version": "2.2.0-beta.0",
   "description": "TypeScript based Developer Toolkit for Sonolus",
   "author": "NonSpicyBurrito",
   "repository": "github:NonSpicyBurrito/sonolus.js",
