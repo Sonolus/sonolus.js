@@ -4,4 +4,9 @@ export type SUI = {
     secondaryMetric: SMetric
 }
 
-export type SMetric = 'arcade' | 'accuracy' | 'life'
+export type SMetric =
+    | 'arcade'
+    | 'accuracy'
+    | 'life'
+    | 'perfectRate'
+    | 'errorHeatmap'
