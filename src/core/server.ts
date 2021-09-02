@@ -85,10 +85,6 @@ export function serve(
         res.send(buildOutput.engine.configuration.buffer)
     })
 
-    app.use((req, res) => {
-        res.status(404).end()
-    })
-
     tryListen(app, serverConfig.port || 8080, () => {
         console.log(
             buildOutput.engine.configuration.hash,
