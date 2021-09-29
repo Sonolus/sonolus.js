@@ -1,15 +1,6 @@
 import { Code, parse } from '../code'
 import { FuncNode, Node } from '../node'
 
-export enum Edge {
-    L,
-    R,
-    B,
-    T,
-    LR,
-    BT,
-}
-
 export function DrawCurved(
     id: Code<number>,
     x1: Code<number>,
@@ -23,7 +14,7 @@ export function DrawCurved(
     z: Code<number>,
     a: Code<number>,
     n: Code<number>,
-    edge: Edge.L | Edge.R | Edge.B | Edge.T,
+    edge: 'L' | 'R' | 'B' | 'T',
     cx: Code<number>,
     cy: Code<number>
 ): Node<0>
@@ -40,7 +31,7 @@ export function DrawCurved(
     z: Code<number>,
     a: Code<number>,
     n: Code<number>,
-    edge: Edge.LR | Edge.BT,
+    edge: 'LR' | 'BT',
     cx1: Code<number>,
     cy1: Code<number>,
     cx2: Code<number>,
@@ -59,18 +50,18 @@ export function DrawCurved(
     z: Code<number>,
     a: Code<number>,
     n: Code<number>,
-    edge: Edge,
+    edge: 'L' | 'R' | 'B' | 'T' | 'LR' | 'BT',
     cx1: Code<number>,
     cy1: Code<number>,
     cx2?: Code<number>,
     cy2?: Code<number>
 ): Node<0> {
-    const functionName = `DrawCurved${Edge[edge]}`
+    const functionName = `DrawCurved${edge}` as const
     switch (edge) {
-        case Edge.L:
-        case Edge.R:
-        case Edge.B:
-        case Edge.T:
+        case 'L':
+        case 'R':
+        case 'B':
+        case 'T':
             return new FuncNode(functionName, [
                 parse(id),
                 parse(x1),
@@ -87,8 +78,8 @@ export function DrawCurved(
                 parse(cx1),
                 parse(cy1),
             ])
-        case Edge.LR:
-        case Edge.BT:
+        case 'LR':
+        case 'BT':
             if (!cx2 || !cy2) throw 'Unexpected missing argument: cx2, cy2'
 
             return new FuncNode(functionName, [

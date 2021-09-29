@@ -1,10 +1,10 @@
+import { EngineDataNode } from 'sonolus-core'
 import { convert } from './scripting'
 import { Code, parse } from './scripting/code'
 import { Node } from './scripting/node'
-import { SNode } from './sonolus/node'
 
 export type CompileEnvironment = {
-    nodes: SNode[]
+    nodes: EngineDataNode[]
     cache?: Map<string, number>
 }
 
@@ -55,7 +55,7 @@ function insert(
 
 function getOrAddIndex(
     id: string,
-    create: () => SNode,
+    create: () => EngineDataNode,
     environment: CompileEnvironment
 ) {
     if (!environment.cache) throw 'Unexpected missing environment cache'

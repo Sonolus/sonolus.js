@@ -1,21 +1,36 @@
-import { gzipSync } from 'zlib'
+import {
+    compressSync,
+    EngineConfiguration,
+    EngineData,
+    EngineDataArchetype,
+    EngineDataBucket,
+    hash,
+    LevelData,
+} from 'sonolus-core'
 import { compile, CompileEnvironment } from './compiler'
-import { hash } from './hasher'
-import { convert } from './scripting/dataType'
-import { SData } from './sonolus/data'
-import { SEngineConfiguration } from './sonolus/engine/configuration'
-import { SEngineData } from './sonolus/engine/data'
-import { SCallback } from './sonolus/engine/script'
-import { SLevelData } from './sonolus/level/data'
+import { convert, DataType } from './scripting/dataType'
+import { Script } from './scripting/script'
 
 export type BuildInput = {
     engine: {
-        configuration: SEngineConfiguration
-        data: SEngineData
+        configuration: EngineConfiguration
+        data: {
+            buckets: EngineDataBucket[]
+            archetypes: EngineDataArchetype[]
+            scripts: (Script | (() => Script))[]
+        }
     }
 
     level: {
-        data: SLevelData
+        data: {
+            entities: {
+                archetype: number
+                data?: {
+                    index: number
+                    values: DataType[]
+                }
+            }[]
+        }
     }
 }
 
@@ -40,9 +55,11 @@ export function build(buildInput: BuildInput): BuildOutput {
     }
     return {
         engine: {
-            configuration: compress(buildInput.engine.configuration),
+            configuration: toResource<EngineConfiguration>(
+                buildInput.engine.configuration
+            ),
 
-            data: compress({
+            data: toResource<EngineData>({
                 buckets: buildInput.engine.data.buckets,
                 archetypes: buildInput.engine.data.archetypes.map(
                     ({ script, data, input }) => ({
@@ -58,7 +75,7 @@ export function build(buildInput: BuildInput): BuildOutput {
                         script = script()
                     }
                     return Object.fromEntries(
-                        (Object.entries(script) as [string, SCallback][]).map(
+                        Object.entries(script).map(
                             ([key, { code: callback, order }]) => [
                                 key,
                                 {
@@ -77,7 +94,7 @@ export function build(buildInput: BuildInput): BuildOutput {
         },
 
         level: {
-            data: compress({
+            data: toResource<LevelData>({
                 entities: buildInput.level.data.entities.map(
                     ({ archetype, data }) => ({
                         archetype,
@@ -91,7 +108,7 @@ export function build(buildInput: BuildInput): BuildOutput {
     }
 }
 
-function convertData(data: SData): {
+function convertData(data: { index: number; values: DataType[] }): {
     index: number
     values: number[]
 } {
@@ -101,8 +118,8 @@ function convertData(data: SData): {
     }
 }
 
-function compress(data: unknown): Resource {
-    const buffer = gzipSync(JSON.stringify(data), { level: 9 })
+function toResource<T>(data: T) {
+    const buffer = compressSync(data)
     return {
         buffer,
         hash: hash(buffer),

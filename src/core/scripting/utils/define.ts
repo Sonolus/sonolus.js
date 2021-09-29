@@ -1,32 +1,32 @@
-import { SArchetype } from '../../sonolus/engine/archetype'
-import { SBucket } from '../../sonolus/engine/bucket'
 import {
-    SOption,
-    SSliderOption,
-    SToggleOption,
-} from '../../sonolus/engine/option'
-import { SScript } from '../../sonolus/engine/script'
+    EngineConfigurationOption,
+    EngineConfigurationSliderOption,
+    EngineConfigurationToggleOption,
+    EngineDataArchetype,
+    EngineDataBucket,
+} from 'sonolus-core'
 import { LevelOption } from '../blocks/levelOption'
 import { Pointer } from '../pointer'
+import { Script } from '../script'
 
-type WithIndex<T> = T[keyof T][] &
-    { [key in keyof T & string as `${key}Index`]: number }
+type WithIndex<T> = T[keyof T][] & {
+    [key in keyof T & string as `${key}Index`]: number
+}
 
-type WithPointers<T extends { [key: string]: SOption }> = SOption[] &
-    {
-        [key in keyof T as T[key] extends SSliderOption
+type WithPointers<T extends { [key: string]: EngineConfigurationOption }> =
+    EngineConfigurationOption[] & {
+        [key in keyof T as T[key] extends EngineConfigurationSliderOption
             ? key
             : never]: Pointer<number>
-    } &
-    {
-        [key in keyof T as T[key] extends SToggleOption
+    } & {
+        [key in keyof T as T[key] extends EngineConfigurationToggleOption
             ? key
             : never]: Pointer<boolean>
     }
 
-export function defineOptions<T extends { [key: string]: SOption }>(
-    keyedOptions: T
-): WithPointers<T> {
+export function defineOptions<
+    T extends { [key: string]: EngineConfigurationOption }
+>(keyedOptions: T): WithPointers<T> {
     const output = Object.values(keyedOptions)
     Object.keys(keyedOptions).forEach((key, index) =>
         Object.assign(output, {
@@ -39,20 +39,20 @@ export function defineOptions<T extends { [key: string]: SOption }>(
     return output as WithPointers<T>
 }
 
-export function defineBuckets<T extends { [key: string]: SBucket }>(
+export function defineBuckets<T extends { [key: string]: EngineDataBucket }>(
     keyedBuckets: T
 ): WithIndex<T> {
     return toArrayWithIndex(keyedBuckets)
 }
 
-export function defineArchetypes<T extends { [key: string]: SArchetype }>(
-    keyedArchetypes: T
-): WithIndex<T> {
+export function defineArchetypes<
+    T extends { [key: string]: EngineDataArchetype }
+>(keyedArchetypes: T): WithIndex<T> {
     return toArrayWithIndex(keyedArchetypes)
 }
 
 export function defineScripts<
-    T extends { [key: string]: SScript | (() => SScript) }
+    T extends { [key: string]: Script | (() => Script) }
 >(keyedScripts: T): WithIndex<T> {
     return toArrayWithIndex(keyedScripts)
 }
