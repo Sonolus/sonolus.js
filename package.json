@@ -3,7 +3,7 @@
   "version": "4.0.0",
   "description": "TypeScript based Developer Toolkit for Sonolus",
   "author": "NonSpicyBurrito",
-  "repository": "github:NonSpicyBurrito/sonolus.js",
+  "repository": "github:Sonolus/sonolus.js",
   "license": "MIT",
   "keywords": [
     "Sonolus"
