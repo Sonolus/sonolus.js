@@ -6,9 +6,9 @@ import {
     hash,
     LevelData,
 } from 'sonolus-core'
-import { Archetype } from '.'
+import { Archetype, Entity } from '.'
 import { compile, CompileEnvironment } from './compiler'
-import { convertData, Data } from './scripting/data'
+import { convertData } from './scripting/data'
 import { Script } from './scripting/script'
 
 export type BuildInput = {
@@ -23,10 +23,7 @@ export type BuildInput = {
 
     level: {
         data: {
-            entities: {
-                archetype: number
-                data?: Data
-            }[]
+            entities: Entity[]
         }
     }
 }
