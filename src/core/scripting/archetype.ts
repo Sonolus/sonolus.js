@@ -1,3 +1,12 @@
-import { EngineDataArchetype } from 'sonolus-core'
+import { DataType } from '.'
 
-export type Archetype = number | EngineDataArchetype
+export type Archetype =
+    | number
+    | {
+          script: number
+          data?: {
+              index: number
+              values: DataType[]
+          }
+          input?: boolean
+      }
