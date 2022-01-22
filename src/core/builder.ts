@@ -2,11 +2,11 @@ import {
     compressSync,
     EngineConfiguration,
     EngineData,
-    EngineDataArchetype,
     EngineDataBucket,
     hash,
     LevelData,
 } from 'sonolus-core'
+import { Archetype } from '.'
 import { compile, CompileEnvironment } from './compiler'
 import { convert, DataType } from './scripting/dataType'
 import { Script } from './scripting/script'
@@ -16,7 +16,7 @@ export type BuildInput = {
         configuration: EngineConfiguration
         data: {
             buckets: EngineDataBucket[]
-            archetypes: EngineDataArchetype[]
+            archetypes: Archetype[]
             scripts: (Script | (() => Script))[]
         }
     }
@@ -61,15 +61,19 @@ export function build(buildInput: BuildInput): BuildOutput {
 
             data: toResource<EngineData>({
                 buckets: buildInput.engine.data.buckets,
-                archetypes: buildInput.engine.data.archetypes.map(
-                    ({ script, data, input }) => ({
+                archetypes: buildInput.engine.data.archetypes
+                    .map((archetype) =>
+                        typeof archetype === 'number'
+                            ? { script: archetype }
+                            : archetype
+                    )
+                    .map(({ script, data, input }) => ({
                         script,
                         ...(data == undefined
                             ? {}
                             : { data: convertData(data) }),
                         ...(input == undefined ? {} : { input }),
-                    })
-                ),
+                    })),
                 scripts: buildInput.engine.data.scripts.map((script) => {
                     if (typeof script === 'function') {
                         script = script()

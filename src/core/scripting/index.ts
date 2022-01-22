@@ -1,3 +1,4 @@
+export * from './archetype'
 export * from './blocks'
 export * from './code'
 export * from './dataType'

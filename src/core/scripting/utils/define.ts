@@ -2,9 +2,9 @@ import {
     EngineConfigurationOption,
     EngineConfigurationSliderOption,
     EngineConfigurationToggleOption,
-    EngineDataArchetype,
     EngineDataBucket,
 } from 'sonolus-core'
+import { Archetype } from '..'
 import { LevelOption } from '../blocks/levelOption'
 import { Pointer } from '../pointer'
 import { Script } from '../script'
@@ -45,9 +45,9 @@ export function defineBuckets<T extends { [key: string]: EngineDataBucket }>(
     return toArrayWithIndex(keyedBuckets)
 }
 
-export function defineArchetypes<
-    T extends { [key: string]: EngineDataArchetype }
->(keyedArchetypes: T): WithIndex<T> {
+export function defineArchetypes<T extends { [key: string]: Archetype }>(
+    keyedArchetypes: T
+): WithIndex<T> {
     return toArrayWithIndex(keyedArchetypes)
 }
 
