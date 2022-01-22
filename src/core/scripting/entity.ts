@@ -1,6 +1,8 @@
 import { Data } from '.'
 
-export type Entity = {
-    archetype: number
-    data?: Data
-}
+export type Entity =
+    | number
+    | {
+          archetype: number
+          data?: Data
+      }

@@ -97,12 +97,16 @@ export function build(buildInput: BuildInput): BuildOutput {
 
         level: {
             data: toResource<LevelData>({
-                entities: buildInput.level.data.entities.map(
-                    ({ archetype, data }) => ({
+                entities: buildInput.level.data.entities
+                    .map((entity) =>
+                        typeof entity === 'number'
+                            ? { archetype: entity }
+                            : entity
+                    )
+                    .map(({ archetype, data }) => ({
                         archetype,
                         data: data && convertData(data),
-                    })
-                ),
+                    })),
             }),
         },
     }
