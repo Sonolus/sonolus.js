@@ -1,5 +1,5 @@
 import { EngineDataNode } from 'sonolus-core'
-import { convert } from './scripting'
+import { convertValue } from './scripting'
 import { Code, parse } from './scripting/code'
 import { Node } from './scripting/node'
 
@@ -38,7 +38,7 @@ function insert(
             ),
         }
     } else {
-        const value = convert(node.value)
+        const value = convertValue(node.value)
         const id = value.toString()
         return {
             id,

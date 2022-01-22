@@ -8,7 +8,7 @@ import {
 } from 'sonolus-core'
 import { Archetype } from '.'
 import { compile, CompileEnvironment } from './compiler'
-import { convert, DataType } from './scripting/dataType'
+import { convertData, Data } from './scripting/data'
 import { Script } from './scripting/script'
 
 export type BuildInput = {
@@ -25,10 +25,7 @@ export type BuildInput = {
         data: {
             entities: {
                 archetype: number
-                data?: {
-                    index: number
-                    values: DataType[]
-                }
+                data?: Data
             }[]
         }
     }
@@ -111,16 +108,6 @@ export function build(buildInput: BuildInput): BuildOutput {
                 ),
             }),
         },
-    }
-}
-
-function convertData(data: { index: number; values: DataType[] }): {
-    index: number
-    values: number[]
-} {
-    return {
-        index: data.index,
-        values: data.values.map(convert),
     }
 }
 

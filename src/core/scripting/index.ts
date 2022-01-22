@@ -1,6 +1,7 @@
 export * from './archetype'
 export * from './blocks'
 export * from './code'
+export * from './data'
 export * from './dataType'
 export * from './functions'
 export * from './node'

@@ -1,12 +1,9 @@
-import { DataType } from '.'
+import { Data } from './data'
 
 export type Archetype =
     | number
     | {
           script: number
-          data?: {
-              index: number
-              values: DataType[]
-          }
+          data?: Data
           input?: boolean
       }
