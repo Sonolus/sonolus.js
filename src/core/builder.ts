@@ -69,33 +69,32 @@ export function build(buildInput: BuildInput): BuildOutput {
                     )
                     .map(({ script, data, input }) => ({
                         script,
-                        ...(data == undefined
-                            ? {}
-                            : { data: convertData(data) }),
-                        ...(input == undefined ? {} : { input }),
+                        data: data && convertData(data),
+                        input,
                     })),
                 scripts: buildInput.engine.data.scripts.map((script) => {
                     if (typeof script === 'function') {
                         script = script()
                     }
                     return Object.fromEntries(
-                        Object.entries(script).map(([key, callback]) => [
-                            key,
-                            typeof callback === 'object' && 'code' in callback
-                                ? {
-                                      index: compile(
-                                          callback.code,
-                                          compileEnvironment
-                                      ),
-                                      order: callback.order,
-                                  }
-                                : {
-                                      index: compile(
-                                          callback,
-                                          compileEnvironment
-                                      ),
-                                  },
-                        ])
+                        Object.entries(script)
+                            .map(
+                                ([key, callback]) =>
+                                    [
+                                        key,
+                                        typeof callback === 'object' &&
+                                        'code' in callback
+                                            ? callback
+                                            : { code: callback },
+                                    ] as const
+                            )
+                            .map(([key, { code, order }]) => [
+                                key,
+                                {
+                                    index: compile(code, compileEnvironment),
+                                    order,
+                                },
+                            ])
                     )
                 }),
                 nodes: compileEnvironment.nodes,
@@ -107,9 +106,7 @@ export function build(buildInput: BuildInput): BuildOutput {
                 entities: buildInput.level.data.entities.map(
                     ({ archetype, data }) => ({
                         archetype,
-                        ...(data == undefined
-                            ? {}
-                            : { data: convertData(data) }),
+                        data: data && convertData(data),
                     })
                 ),
             }),
