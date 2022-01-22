@@ -75,18 +75,23 @@ export function build(buildInput: BuildInput): BuildOutput {
                         script = script()
                     }
                     return Object.fromEntries(
-                        Object.entries(script).map(
-                            ([key, { code: callback, order }]) => [
-                                key,
-                                {
-                                    index: compile(
-                                        callback,
-                                        compileEnvironment
-                                    ),
-                                    ...(order == undefined ? {} : { order }),
-                                },
-                            ]
-                        )
+                        Object.entries(script).map(([key, callback]) => [
+                            key,
+                            typeof callback === 'object' && 'code' in callback
+                                ? {
+                                      index: compile(
+                                          callback.code,
+                                          compileEnvironment
+                                      ),
+                                      order: callback.order,
+                                  }
+                                : {
+                                      index: compile(
+                                          callback,
+                                          compileEnvironment
+                                      ),
+                                  },
+                        ])
                     )
                 }),
                 nodes: compileEnvironment.nodes,

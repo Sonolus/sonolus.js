@@ -11,7 +11,9 @@ export type Script = {
     terminate?: Callback
 }
 
-export type Callback = {
-    code: Code
-    order?: number
-}
+export type Callback =
+    | Code
+    | {
+          code: Code
+          order?: number
+      }
