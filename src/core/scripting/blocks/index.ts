@@ -1,5 +1,6 @@
 export * from './archetypeLife'
 export * from './arrayBlock'
+export * from './engineRom'
 export * from './entityData'
 export * from './entityInfo'
 export * from './entityInput'
