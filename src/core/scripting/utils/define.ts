@@ -1,9 +1,4 @@
-import {
-    EngineConfigurationOption,
-    EngineConfigurationSliderOption,
-    EngineConfigurationToggleOption,
-    EngineDataBucket,
-} from 'sonolus-core'
+import { EngineConfigurationOption, EngineDataBucket } from 'sonolus-core'
 import { Archetype } from '..'
 import { LevelOption } from '../blocks/levelOption'
 import { Pointer } from '../pointer'
@@ -15,13 +10,11 @@ type WithIndex<T> = T[keyof T][] & {
 
 type WithPointers<T extends { [key: string]: EngineConfigurationOption }> =
     EngineConfigurationOption[] & {
-        [key in keyof T as T[key] extends EngineConfigurationSliderOption
-            ? key
-            : never]: Pointer<number>
-    } & {
-        [key in keyof T as T[key] extends EngineConfigurationToggleOption
-            ? key
-            : never]: Pointer<boolean>
+        [key in keyof T]: {
+            toggle: Pointer<boolean>
+            slider: Pointer<number>
+            select: Pointer<number>
+        }[T[key]['type']]
     }
 
 export function defineOptions<
@@ -30,10 +23,7 @@ export function defineOptions<
     const output = Object.values(keyedOptions)
     Object.keys(keyedOptions).forEach((key, index) =>
         Object.assign(output, {
-            [key]:
-                keyedOptions[key].type === 'slider'
-                    ? LevelOption.to<number>(index)
-                    : LevelOption.to<boolean>(index),
+            [key]: LevelOption.to(index),
         })
     )
     return output as WithPointers<T>
