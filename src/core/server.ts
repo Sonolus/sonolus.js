@@ -19,7 +19,7 @@ export function serve(
 
     sonolus.db.engines.push({
         name: 'dev',
-        version: 4,
+        version: 5,
         title: { en: 'Dev Engine' },
         subtitle: { en: 'Unknown' },
         author: { en: 'Unknown' },
