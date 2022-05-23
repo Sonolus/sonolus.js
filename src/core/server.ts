@@ -98,13 +98,15 @@ export function serve(
 function tryListen(app: Express, port: number, callback: () => void) {
     app.listen(port, () => {
         console.log('Server available at:')
+        const filter = parseInt(process.versions.node.split('.')[0]) >= 18 ?
+            ({ family }) => family === 4 : ({ family }) => family === 'IPv4';
         console.log(
             (
                 Object.values(
                     networkInterfaces()
                 ).flat() as NetworkInterfaceInfo[]
             )
-                .filter(({ family }) => family === 'IPv4')
+                .filter(filter)
                 .map(({ address }) => `http://${address}:${port}`)
                 .join('\n')
         )
