@@ -104,7 +104,13 @@ function tryListen(app: Express, port: number, callback: () => void) {
                     networkInterfaces()
                 ).flat() as NetworkInterfaceInfo[]
             )
-                .filter(({ family }) => family === 'IPv4')
+                .filter(
+                    ({ family }) =>
+                        family ===
+                        (parseInt(process.versions.node.split('.')[0]) >= 18
+                            ? 4
+                            : 'IPv4')
+                )
                 .map(({ address }) => `http://${address}:${port}`)
                 .join('\n')
         )
