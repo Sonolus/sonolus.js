@@ -8,7 +8,7 @@ type WithIndex<T> = T[keyof T][] & {
     [key in keyof T & string as `${key}Index`]: number
 }
 
-type WithPointers<T extends { [key: string]: EngineConfigurationOption }> =
+type WithPointers<T extends Record<string, EngineConfigurationOption>> =
     EngineConfigurationOption[] & {
         [key in keyof T]: {
             toggle: Pointer<boolean>
@@ -18,7 +18,7 @@ type WithPointers<T extends { [key: string]: EngineConfigurationOption }> =
     }
 
 export function defineOptions<
-    T extends { [key: string]: EngineConfigurationOption }
+    T extends Record<string, EngineConfigurationOption>
 >(keyedOptions: T): WithPointers<T> {
     const output = Object.values(keyedOptions)
     Object.keys(keyedOptions).forEach((key, index) =>
@@ -29,25 +29,25 @@ export function defineOptions<
     return output as WithPointers<T>
 }
 
-export function defineBuckets<T extends { [key: string]: EngineDataBucket }>(
+export function defineBuckets<T extends Record<string, EngineDataBucket>>(
     keyedBuckets: T
 ): WithIndex<T> {
     return toArrayWithIndex(keyedBuckets)
 }
 
-export function defineArchetypes<T extends { [key: string]: Archetype }>(
+export function defineArchetypes<T extends Record<string, Archetype>>(
     keyedArchetypes: T
 ): WithIndex<T> {
     return toArrayWithIndex(keyedArchetypes)
 }
 
 export function defineScripts<
-    T extends { [key: string]: Script | (() => Script) }
+    T extends Record<string, Script | (() => Script)>
 >(keyedScripts: T): WithIndex<T> {
     return toArrayWithIndex(keyedScripts)
 }
 
-function toArrayWithIndex<T>(input: T) {
+function toArrayWithIndex<T extends Record<string, unknown>>(input: T) {
     const output = Object.values(input)
     Object.keys(input).forEach((key, index) =>
         Object.assign(output, { [`${key}Index`]: index })
