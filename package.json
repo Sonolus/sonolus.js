@@ -25,6 +25,7 @@
     "sonolus-express": "^4.0.0"
   },
   "devDependencies": {
+    "@tsconfig/node16": "^1.0.3",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.18",
     "@types/prettier": "^2.4.4",

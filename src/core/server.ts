@@ -1,5 +1,4 @@
-import * as express from 'express'
-import { Express } from 'express'
+import express, { Express } from 'express'
 import { NetworkInterfaceInfo, networkInterfaces } from 'os'
 import { resolve } from 'path'
 import { Sonolus } from 'sonolus-express'
