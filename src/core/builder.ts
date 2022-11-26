@@ -23,6 +23,7 @@ export type BuildInput = {
 
     level: {
         data: {
+            bgmOffset: number
             entities: Entity[]
         }
     }
@@ -97,6 +98,7 @@ export function build(buildInput: BuildInput): BuildOutput {
 
         level: {
             data: toResource<LevelData>({
+                bgmOffset: buildInput.level.data.bgmOffset,
                 entities: buildInput.level.data.entities
                     .map((entity) =>
                         typeof entity === 'number'
