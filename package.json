@@ -21,8 +21,8 @@
     "prettier": "^2.8.0"
   },
   "peerDependencies": {
-    "sonolus-core": "^6.0.0-beta.2",
-    "sonolus-express": "^5.0.0-beta.0"
+    "sonolus-core": "^6.0.0-beta.3",
+    "sonolus-express": "^5.0.0-beta.1"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
