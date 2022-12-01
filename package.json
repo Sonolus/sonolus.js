@@ -21,7 +21,7 @@
     "prettier": "^2.8.0"
   },
   "peerDependencies": {
-    "sonolus-core": "^6.0.0-beta.3",
+    "sonolus-core": "^6.0.0-beta.5",
     "sonolus-express": "^5.0.0-beta.1"
   },
   "devDependencies": {
