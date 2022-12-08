@@ -15,3 +15,10 @@ export function customEffectClip(
 ): Node<number> {
     return Add(100000, Multiply(engineId, 100), clipId)
 }
+
+export function customParticleEffect(
+    engineId: Code<number>,
+    effectId: Code<number>
+): Node<number> {
+    return Add(1000000, Multiply(engineId, 1000), effectId)
+}

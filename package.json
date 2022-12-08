@@ -1,6 +1,6 @@
 {
   "name": "sonolus.js",
-  "version": "7.1.0",
+  "version": "8.0.0",
   "description": "TypeScript based Developer Toolkit for Sonolus",
   "author": "NonSpicyBurrito",
   "repository": "github:Sonolus/sonolus.js",
@@ -18,23 +18,24 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "prettier": "^2.7.1"
+    "prettier": "^2.8.0"
   },
   "peerDependencies": {
-    "sonolus-core": "^5.1.0",
-    "sonolus-express": "^4.1.0"
+    "sonolus-core": "^6.0.0",
+    "sonolus-express": "^5.0.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
     "@types/express": "^4.17.14",
     "@types/node": "^16.18.3",
     "@types/prettier": "^2.7.1",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@typescript-eslint/parser": "^5.42.0",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
     "copyfiles": "^2.4.1",
-    "eslint": "^8.26.0",
+    "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "typescript": "^4.8.4"
+    "prettier-plugin-organize-imports": "^3.2.1",
+    "typescript": "^4.9.3"
   }
 }
