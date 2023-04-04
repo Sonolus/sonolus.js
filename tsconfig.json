@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "ESNext"
+        ],
+        "module": "NodeNext",
+        "target": "ESNext",
+        "strict": true,
+        "exactOptionalPropertyTypes": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "NodeNext",
+        "outDir": "dist",
+        "declaration": true
+    }
+}
