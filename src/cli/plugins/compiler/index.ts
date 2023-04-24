@@ -65,8 +65,9 @@ const compile = (config: FullSonolusCLIConfig, workerPool: WorkerPool) =>
 
                 compileArtifacts.sort(
                     (a, b) =>
+                        a.index - b.index ||
                         Object.values(ArchetypeCallback).indexOf(a.callback) -
-                        Object.values(ArchetypeCallback).indexOf(b.callback),
+                            Object.values(ArchetypeCallback).indexOf(b.callback),
                 )
 
                 const artifacts = assemble(mainArtifacts[0], compileArtifacts)
