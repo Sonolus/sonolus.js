@@ -59,13 +59,18 @@ declare global {
     const Judgment: Compiler['Judgment']
     type Judgment = import('sonolus.js-compiler').Judgment
 
-    type JudgmentWindow = import('sonolus.js-compiler').JudgmentWindow
-    type JudgmentWindows = import('sonolus.js-compiler').JudgmentWindows
+    const EffectClipId: Compiler['EffectClipId']
     type EffectClipId = import('sonolus.js-compiler').EffectClipId
+    const ParticleEffectId: Compiler['ParticleEffectId']
     type ParticleEffectId = import('sonolus.js-compiler').ParticleEffectId
+    const SkinSpriteId: Compiler['SkinSpriteId']
     type SkinSpriteId = import('sonolus.js-compiler').SkinSpriteId
+
+    const LoopedEffectClipInstanceId: Compiler['LoopedEffectClipInstanceId']
     type LoopedEffectClipInstanceId = import('sonolus.js-compiler').LoopedEffectClipInstanceId
+    const ParticleEffectInstanceId: Compiler['ParticleEffectInstanceId']
     type ParticleEffectInstanceId = import('sonolus.js-compiler').ParticleEffectInstanceId
+    const ScheduledLoopedEffectClipInstanceId: Compiler['ScheduledLoopedEffectClipInstanceId']
     type ScheduledLoopedEffectClipInstanceId =
         import('sonolus.js-compiler').ScheduledLoopedEffectClipInstanceId
 
@@ -78,6 +83,8 @@ declare global {
     const entityInfos: Compiler['entityInfos']
     type EntityInfo = import('sonolus.js-compiler').EntityInfo
     const input: Compiler['input']
+    type JudgmentWindow = import('sonolus.js-compiler').JudgmentWindow
+    type JudgmentWindows = import('sonolus.js-compiler').JudgmentWindows
     const life: Compiler['life']
     type ArchetypeLife = import('sonolus.js-compiler').ArchetypeLife
     type ConsecutiveLife = import('sonolus.js-compiler').ConsecutiveLife
