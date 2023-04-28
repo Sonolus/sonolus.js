@@ -73,6 +73,8 @@ declare global {
     const ScheduledLoopedEffectClipInstanceId: Compiler['ScheduledLoopedEffectClipInstanceId']
     type ScheduledLoopedEffectClipInstanceId =
         import('sonolus.js-compiler').ScheduledLoopedEffectClipInstanceId
+    const TouchId: Compiler['TouchId']
+    type TouchId = import('sonolus.js-compiler').TouchId
 
     const audio: Compiler['audio']
     const background: Compiler['background']
