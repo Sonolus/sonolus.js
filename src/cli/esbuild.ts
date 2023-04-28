@@ -17,4 +17,4 @@ export const buildOptions = (config: FullSonolusCLIConfig): BuildOptions => ({
     },
 })
 
-export const getOutfile = (dev: string): string => path.join(dev, 'index.js')
+export const getOutfile = (dev: string): string => path.join(dev, 'index.mjs')
