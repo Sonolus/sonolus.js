@@ -116,12 +116,10 @@ const tryListen = (app: Express, port: number, callback: () => void) => {
     app.listen(port, () => {
         console.log('Server available at:')
         console.log(
-            (Object.values(networkInterfaces()).flat() as NetworkInterfaceInfo[])
-                .filter(
-                    ({ family }) =>
-                        family ===
-                        (parseInt(process.versions.node.split('.')[0]) >= 18 ? 4 : 'IPv4'),
-                )
+            Object.values(networkInterfaces())
+                .flat()
+                .filter((info): info is NetworkInterfaceInfo => !!info)
+                .filter(({ family }) => family === 'IPv4')
                 .map(({ address }) => `http://${address}:${port}`)
                 .join('\n'),
         )
