@@ -45,7 +45,7 @@ const range: Intrinsic<'Call'> = {
         ctx.JSCall(ir, {
             func: (length: number) => [...Array(length).keys()],
             thisValue: undefined,
-            args: [ctx.value(ir, length)],
+            args: ctx.value(ir, [length]),
         }),
 }
 

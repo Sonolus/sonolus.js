@@ -18,7 +18,7 @@ export const passThrough = <T>(target: T, keys: PassThroughKeys<T>): void => {
                 ctx.JSCall(ir, {
                     func,
                     thisValue,
-                    args: args.map((arg) => ctx.value(ir, arg)),
+                    args: ctx.value(ir, args),
                 }),
         } satisfies Intrinsic<'Call'>)
     }
@@ -43,10 +43,7 @@ export const implement = <T>(target: T, props: ImplementProps<T>): void => {
             [Intrinsic.Call]: (ir, thisValue, args, ctx) =>
                 ctx.Call(ir, {
                     callee: ctx.value(ir, implementation, thisValue),
-                    args: {
-                        init: ctx.zero(ir),
-                        value: args,
-                    },
+                    args: ctx.value(ir, args),
                 }),
         } satisfies Intrinsic<'Call'>)
     }
