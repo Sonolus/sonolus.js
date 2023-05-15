@@ -17,7 +17,7 @@
     "sonolus-cli": "dist/cli/index.js"
   },
   "scripts": {
-    "lint": "tsc -p . --noEmit && eslint ./src --ext .ts",
+    "prebuild": "tsc -p . --noEmit && eslint --ext .ts ./src",
     "build": "tsc -p . && node ./build.js"
   },
   "dependencies": {
