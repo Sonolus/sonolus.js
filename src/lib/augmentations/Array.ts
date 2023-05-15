@@ -40,13 +40,13 @@ declare global {
     }
 }
 
-const range: Intrinsic<'Call'> = {
+const range = (length: number) => [...Array(length).keys()]
+
+Array.range = Object.assign(range, {
     [Intrinsic.Call]: (ir, _, [length], ctx) =>
         ctx.JSCall(ir, {
-            func: (length: number) => [...Array(length).keys()],
+            func: range,
             thisValue: undefined,
             args: ctx.value(ir, [length]),
         }),
-}
-
-Array.range = range as never
+} satisfies Intrinsic<'Call'>)
