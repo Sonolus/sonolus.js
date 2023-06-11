@@ -5,13 +5,14 @@
         ],
         "module": "NodeNext",
         "target": "ESNext",
-        "strict": true,
-        "exactOptionalPropertyTypes": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
         "moduleResolution": "NodeNext",
-        "outDir": "dist",
+        "strict": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "exactOptionalPropertyTypes": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
         "declaration": true
     }
 }
