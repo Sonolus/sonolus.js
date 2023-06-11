@@ -97,7 +97,7 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
 
     await config.devServer(sonolus)
 
-    return new Promise((resolve) => tryListen(app, 8080, resolve))
+    return new Promise((resolve) => tryListen(app, config.port, config.host, resolve))
 }
 
 const empty = <T extends ResourceType>(type: T) => ({
@@ -112,17 +112,21 @@ const root = <T extends ResourceType>(type: T) => ({
     url: `/${type}`,
 })
 
-const tryListen = (app: Express, port: number, callback: () => void) => {
-    app.listen(port, () => {
+const tryListen = (app: Express, port: number, host: string, callback: () => void) => {
+    app.listen(port, host, () => {
         console.log('Server available at:')
-        console.log(
-            Object.values(networkInterfaces())
-                .flat()
-                .filter((info): info is NetworkInterfaceInfo => !!info)
-                .filter(({ family }) => family === 'IPv4')
-                .map(({ address }) => `http://${address}:${port}`)
-                .join('\n'),
-        )
+        console.log(`http://${host}:${port}`)
+        if (host === '0.0.0.0') {
+            console.log(
+                Object.values(networkInterfaces())
+                    .flat()
+                    .filter((info): info is NetworkInterfaceInfo => !!info)
+                    .filter(({ family }) => family === 'IPv4')
+                    .map(({ address }) => `http://${address}:${port}`)
+                    .join('\n'),
+            )
+        }
+
         console.log()
         console.log(
             'Please turn on cache revalidation in your Sonolus app (Settings -> Cache -> Always Revalidate)',
@@ -133,6 +137,6 @@ const tryListen = (app: Express, port: number, callback: () => void) => {
 
         callback()
     }).on('error', () => {
-        tryListen(app, port + 1, callback)
+        tryListen(app, port + 1, host, callback)
     })
 }

@@ -21,6 +21,8 @@ export type FullSonolusCLIConfig = {
     entry: string
     dev: string
     dist: string
+    port: number
+    host: string
     workerCount: number
     preloadLib: boolean
     optimizationLevel: 'low' | 'high'
@@ -47,6 +49,8 @@ export const loadConfig = async (mode: 'dev' | 'build'): Promise<FullSonolusCLIC
         entry: './src/index.ts',
         dev: './.dev',
         dist: './dist',
+        port: 8080,
+        host: '0.0.0.0',
         workerCount: Math.floor(cpus().length / 2),
         preloadLib: mode === 'dev',
         optimizationLevel: mode === 'dev' ? 'low' : 'high',
