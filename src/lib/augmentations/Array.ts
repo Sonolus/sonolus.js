@@ -47,6 +47,6 @@ Array.range = Object.assign(range, {
         ctx.JSCall(ir, {
             func: range,
             thisValue: undefined,
-            args: ctx.value(ir, [length]),
+            args: [ctx.value(ir, length)],
         }),
 } satisfies Intrinsic<'Call'>)
