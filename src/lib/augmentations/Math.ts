@@ -1,5 +1,42 @@
 import { implement, passThrough } from './utils.js'
 
+type Direction = 'In' | 'Out' | 'InOut' | 'OutIn'
+type Curve = 'Sine' | 'Quad' | 'Cubic' | 'Quart' | 'Quint' | 'Expo' | 'Circ' | 'Back' | 'Elastic'
+
+declare global {
+    interface Math {
+        clamp(x: number, a: number, b: number): number
+        degree(value: number): number
+        ease(direction: Direction, curve: Curve, value: number): number
+        frac(value: number): number
+        lerp(x: number, y: number, s: number): number
+        lerpClamped(x: number, y: number, s: number): number
+        mod(x: number, y: number): number
+        radian(value: number): number
+        randomFloat(min: number, max: number): number
+        randomInt(min: number, max: number): number
+        remap(a: number, b: number, c: number, d: number, x: number): number
+        remapClamped(a: number, b: number, c: number, d: number, x: number): number
+        unlerp(a: number, b: number, x: number): number
+        unlerpClamped(a: number, b: number, x: number): number
+    }
+}
+
+Math.clamp = native.Clamp
+Math.degree = native.Degree
+Math.ease = (direction, curve, value) => native[`Ease${direction}${curve}`](value)
+Math.frac = native.Frac
+Math.lerp = native.Lerp
+Math.lerpClamped = native.LerpClamped
+Math.mod = native.Mod
+Math.radian = native.Radian
+Math.randomFloat = native.Random
+Math.randomInt = native.RandomInteger
+Math.remap = native.Remap
+Math.remapClamped = native.RemapClamped
+Math.unlerp = native.Unlerp
+Math.unlerpClamped = native.UnlerpClamped
+
 const hypot = (...values: number[]) => {
     if (!values.length) return 0
 
@@ -75,40 +112,3 @@ implement(Math, {
     tanh: native.Tanh,
     trunc: native.Trunc,
 })
-
-type Direction = 'In' | 'Out' | 'InOut' | 'OutIn'
-type Curve = 'Sine' | 'Quad' | 'Cubic' | 'Quart' | 'Quint' | 'Expo' | 'Circ' | 'Back' | 'Elastic'
-
-declare global {
-    interface Math {
-        clamp(x: number, a: number, b: number): number
-        degree(value: number): number
-        ease(direction: Direction, curve: Curve, value: number): number
-        frac(value: number): number
-        lerp(x: number, y: number, s: number): number
-        lerpClamped(x: number, y: number, s: number): number
-        mod(x: number, y: number): number
-        radian(value: number): number
-        randomFloat(min: number, max: number): number
-        randomInt(min: number, max: number): number
-        remap(a: number, b: number, c: number, d: number, x: number): number
-        remapClamped(a: number, b: number, c: number, d: number, x: number): number
-        unlerp(a: number, b: number, x: number): number
-        unlerpClamped(a: number, b: number, x: number): number
-    }
-}
-
-Math.clamp = native.Clamp
-Math.degree = native.Degree
-Math.ease = (direction, curve, value) => native[`Ease${direction}${curve}`](value)
-Math.frac = native.Frac
-Math.lerp = native.Lerp
-Math.lerpClamped = native.LerpClamped
-Math.mod = native.Mod
-Math.radian = native.Radian
-Math.randomFloat = native.Random
-Math.randomInt = native.RandomInteger
-Math.remap = native.Remap
-Math.remapClamped = native.RemapClamped
-Math.unlerp = native.Unlerp
-Math.unlerpClamped = native.UnlerpClamped
