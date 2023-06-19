@@ -18,7 +18,7 @@ export const passThrough = <T>(target: T, keys: PassThroughKeys<T>): void => {
                 ctx.JSCall(ir, {
                     func,
                     thisValue,
-                    args: ctx.value(ir, args),
+                    args: args.map((arg) => ctx.value(ir, arg)),
                 }),
         } satisfies Intrinsic<'Call'>)
     }

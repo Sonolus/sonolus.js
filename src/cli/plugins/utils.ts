@@ -12,7 +12,7 @@ export const createPlugin = (name: string, onEnd: () => Promise<void>): Plugin =
                 return {
                     errors: [
                         {
-                            text: `${error}`,
+                            text: error instanceof Error && error.stack ? error.stack : `${error}`,
                         },
                     ],
                 }
