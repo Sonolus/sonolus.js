@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+
 import * as compiler from 'sonolus.js-compiler/play'
 
 Object.assign(globalThis, compiler)
