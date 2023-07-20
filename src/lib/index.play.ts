@@ -1,4 +1,4 @@
-import './compiler.js'
+import './play/index.js'
 
 import './augmentations/index.js'
 

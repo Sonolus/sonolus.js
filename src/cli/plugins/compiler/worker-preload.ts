@@ -1,3 +1,3 @@
-import '../../../lib/index.js'
+import '../../../lib/index.play.js'
 
 import './worker.js'
