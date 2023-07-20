@@ -4,7 +4,7 @@ import path from 'node:path'
 import { cpus } from 'os'
 import { compress } from 'sonolus-core'
 import { Sonolus } from 'sonolus-express'
-import { Artifacts } from 'sonolus.js-compiler'
+import { Artifacts } from 'sonolus.js-compiler/play'
 import { importDefault } from './utils.js'
 
 const configPaths = [
@@ -72,7 +72,7 @@ export const loadConfig = async (mode: 'dev' | 'build'): Promise<FullSonolusCLIC
 
             await Promise.all([
                 output('EngineConfiguration', artifacts.engine.configuration),
-                output('EngineData', artifacts.engine.data),
+                output('EnginePlayData', artifacts.engine.playData),
                 output('LevelData', artifacts.level.data),
             ])
         },

@@ -1,4 +1,4 @@
-import * as compiler from 'sonolus.js-compiler'
+import * as compiler from 'sonolus.js-compiler/play'
 
 Object.assign(globalThis, compiler)
 
@@ -6,100 +6,100 @@ type Compiler = typeof compiler
 
 declare global {
     const Archetype: Compiler['Archetype']
-    type Archetype = import('sonolus.js-compiler').Archetype
+    type Archetype = import('sonolus.js-compiler/play').Archetype
     const SpawnableArchetype: Compiler['SpawnableArchetype']
-    type SpawnableArchetype<T extends import('sonolus.js-compiler').SpawnDataDefinition> =
-        import('sonolus.js-compiler').SpawnableArchetype<T>
+    type SpawnableArchetype<T extends import('sonolus.js-compiler/play').SpawnDataDefinition> =
+        import('sonolus.js-compiler/play').SpawnableArchetype<T>
 
     const levelData: Compiler['levelData']
     const levelMemory: Compiler['levelMemory']
 
     const Collection: Compiler['Collection']
-    type Collection<T> = import('sonolus.js-compiler').Collection<T>
+    type Collection<T> = import('sonolus.js-compiler/play').Collection<T>
     const Container: Compiler['Container']
     const ContainerType: Compiler['ContainerType']
-    type ContainerType<T> = import('sonolus.js-compiler').ContainerType<T>
+    type ContainerType<T> = import('sonolus.js-compiler/play').ContainerType<T>
     const DataType: Compiler['DataType']
-    type DataType<T extends number | boolean> = import('sonolus.js-compiler').DataType<T>
+    type DataType<T extends number | boolean> = import('sonolus.js-compiler/play').DataType<T>
     const Dictionary: Compiler['Dictionary']
-    type Dictionary<K, V> = import('sonolus.js-compiler').Dictionary<K, V>
+    type Dictionary<K, V> = import('sonolus.js-compiler/play').Dictionary<K, V>
     const Mat: Compiler['Mat']
-    type Mat = import('sonolus.js-compiler').Mat
-    type MatLike = import('sonolus.js-compiler').MatLike
+    type Mat = import('sonolus.js-compiler/play').Mat
+    type MatLike = import('sonolus.js-compiler/play').MatLike
     const Quad: Compiler['Quad']
-    type Quad = import('sonolus.js-compiler').Quad
-    type QuadLike = import('sonolus.js-compiler').QuadLike
+    type Quad = import('sonolus.js-compiler/play').Quad
+    type QuadLike = import('sonolus.js-compiler/play').QuadLike
     const Rect: Compiler['Rect']
-    type Rect = import('sonolus.js-compiler').Rect
-    type RectLike = import('sonolus.js-compiler').RectLike
+    type Rect = import('sonolus.js-compiler/play').Rect
+    type RectLike = import('sonolus.js-compiler/play').RectLike
     const Tuple: Compiler['Tuple']
-    type Tuple<T> = import('sonolus.js-compiler').Tuple<T>
+    type Tuple<T> = import('sonolus.js-compiler/play').Tuple<T>
     const Vec: Compiler['Vec']
-    type Vec = import('sonolus.js-compiler').Vec
-    type VecLike = import('sonolus.js-compiler').VecLike
+    type Vec = import('sonolus.js-compiler/play').Vec
+    type VecLike = import('sonolus.js-compiler/play').VecLike
 
     const defineArchetypes: Compiler['defineArchetypes']
     const defineBuckets: Compiler['defineBuckets']
-    type Bucket = import('sonolus.js-compiler').Bucket
+    type Bucket = import('sonolus.js-compiler/play').Bucket
     const defineEffect: Compiler['defineEffect']
-    type EffectClip = import('sonolus.js-compiler').EffectClip
+    type EffectClip = import('sonolus.js-compiler/play').EffectClip
     const defineLib: Compiler['defineLib']
     const defineOptions: Compiler['defineOptions']
     const defineParticle: Compiler['defineParticle']
-    type ParticleEffect = import('sonolus.js-compiler').ParticleEffect
+    type ParticleEffect = import('sonolus.js-compiler/play').ParticleEffect
     const defineSkin: Compiler['defineSkin']
-    type SkinSprite = import('sonolus.js-compiler').SkinSprite
+    type SkinSprite = import('sonolus.js-compiler/play').SkinSprite
 
     const ArchetypeCallback: Compiler['ArchetypeCallback']
-    type ArchetypeCallback = import('sonolus.js-compiler').ArchetypeCallback
+    type ArchetypeCallback = import('sonolus.js-compiler/play').ArchetypeCallback
     const EntityState: Compiler['EntityState']
-    type EntityState = import('sonolus.js-compiler').EntityState
+    type EntityState = import('sonolus.js-compiler/play').EntityState
     const HorizontalAlign: Compiler['HorizontalAlign']
-    type HorizontalAlign = import('sonolus.js-compiler').HorizontalAlign
+    type HorizontalAlign = import('sonolus.js-compiler/play').HorizontalAlign
     const Judgment: Compiler['Judgment']
-    type Judgment = import('sonolus.js-compiler').Judgment
+    type Judgment = import('sonolus.js-compiler/play').Judgment
 
     const EffectClipId: Compiler['EffectClipId']
-    type EffectClipId = import('sonolus.js-compiler').EffectClipId
+    type EffectClipId = import('sonolus.js-compiler/play').EffectClipId
     const ParticleEffectId: Compiler['ParticleEffectId']
-    type ParticleEffectId = import('sonolus.js-compiler').ParticleEffectId
+    type ParticleEffectId = import('sonolus.js-compiler/play').ParticleEffectId
     const SkinSpriteId: Compiler['SkinSpriteId']
-    type SkinSpriteId = import('sonolus.js-compiler').SkinSpriteId
+    type SkinSpriteId = import('sonolus.js-compiler/play').SkinSpriteId
 
     const LoopedEffectClipInstanceId: Compiler['LoopedEffectClipInstanceId']
-    type LoopedEffectClipInstanceId = import('sonolus.js-compiler').LoopedEffectClipInstanceId
+    type LoopedEffectClipInstanceId = import('sonolus.js-compiler/play').LoopedEffectClipInstanceId
     const ParticleEffectInstanceId: Compiler['ParticleEffectInstanceId']
-    type ParticleEffectInstanceId = import('sonolus.js-compiler').ParticleEffectInstanceId
+    type ParticleEffectInstanceId = import('sonolus.js-compiler/play').ParticleEffectInstanceId
     const ScheduledLoopedEffectClipInstanceId: Compiler['ScheduledLoopedEffectClipInstanceId']
     type ScheduledLoopedEffectClipInstanceId =
-        import('sonolus.js-compiler').ScheduledLoopedEffectClipInstanceId
+        import('sonolus.js-compiler/play').ScheduledLoopedEffectClipInstanceId
     const TouchId: Compiler['TouchId']
-    type TouchId = import('sonolus.js-compiler').TouchId
+    type TouchId = import('sonolus.js-compiler/play').TouchId
 
     const audio: Compiler['audio']
     const background: Compiler['background']
     const bpmChanges: Compiler['bpmChanges']
-    type BpmChange = import('sonolus.js-compiler').BpmChange
+    type BpmChange = import('sonolus.js-compiler/play').BpmChange
     const compiler: Compiler['compiler']
     const debug: Compiler['debug']
     const entityInfos: Compiler['entityInfos']
-    type EntityInfo = import('sonolus.js-compiler').EntityInfo
+    type EntityInfo = import('sonolus.js-compiler/play').EntityInfo
     const input: Compiler['input']
-    type JudgmentWindow = import('sonolus.js-compiler').JudgmentWindow
-    type JudgmentWindows = import('sonolus.js-compiler').JudgmentWindows
+    type JudgmentWindow = import('sonolus.js-compiler/play').JudgmentWindow
+    type JudgmentWindows = import('sonolus.js-compiler/play').JudgmentWindows
     const life: Compiler['life']
-    type ArchetypeLife = import('sonolus.js-compiler').ArchetypeLife
-    type ConsecutiveLife = import('sonolus.js-compiler').ConsecutiveLife
+    type ArchetypeLife = import('sonolus.js-compiler/play').ArchetypeLife
+    type ConsecutiveLife = import('sonolus.js-compiler/play').ConsecutiveLife
     const native: Compiler['native']
     const score: Compiler['score']
-    type ConsecutiveScore = import('sonolus.js-compiler').ConsecutiveScore
+    type ConsecutiveScore = import('sonolus.js-compiler/play').ConsecutiveScore
     const screen: Compiler['screen']
     const time: Compiler['time']
     const timeScaleChanges: Compiler['timeScaleChanges']
-    type TimeScaleChange = import('sonolus.js-compiler').TimeScaleChange
+    type TimeScaleChange = import('sonolus.js-compiler/play').TimeScaleChange
     const touches: Compiler['touches']
-    type Touch = import('sonolus.js-compiler').Touch
+    type Touch = import('sonolus.js-compiler/play').Touch
     const ui: Compiler['ui']
-    type UI = import('sonolus.js-compiler').UI
-    type UIConfiguration = import('sonolus.js-compiler').UIConfiguration
+    type UI = import('sonolus.js-compiler/play').UI
+    type UIConfiguration = import('sonolus.js-compiler/play').UIConfiguration
 }

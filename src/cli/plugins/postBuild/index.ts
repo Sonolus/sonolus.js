@@ -5,7 +5,7 @@ import { hash } from 'sonolus-core'
 import { FullSonolusCLIConfig } from '../../config.js'
 import { createPlugin } from '../utils.js'
 
-const filenames = ['EngineConfiguration', 'EngineData', 'LevelData'] as const
+const filenames = ['EngineConfiguration', 'EnginePlayData', 'LevelData'] as const
 
 export const postBuildPlugin = (config: FullSonolusCLIConfig): Plugin =>
     createPlugin('PostBuild', async () => {

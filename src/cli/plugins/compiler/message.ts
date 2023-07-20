@@ -1,4 +1,9 @@
-import { CompileTask, CompileTaskArtifacts, MainTask, MainTaskArtifacts } from 'sonolus.js-compiler'
+import {
+    CompileTask,
+    CompileTaskArtifacts,
+    MainTask,
+    MainTaskArtifacts,
+} from 'sonolus.js-compiler/play'
 
 export type MainToWorkerMessage =
     | {

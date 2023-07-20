@@ -1,5 +1,5 @@
 import { parentPort } from 'node:worker_threads'
-import { Project, buildCompileTask, buildMainTask } from 'sonolus.js-compiler'
+import { Project, buildCompileTask, buildMainTask } from 'sonolus.js-compiler/play'
 import { importDefault } from '../../utils.js'
 import { MainToWorkerMessage, WorkerToMainMessage } from './message.js'
 
@@ -23,7 +23,7 @@ onReceive('load', async ({ entry }) => {
     onReceive('scan', () =>
         send({
             type: 'scan',
-            archetypes: Object.keys(project.engine.data.archetypes),
+            archetypes: Object.keys(project.engine.playData.archetypes),
         }),
     )
     onReceive('main', () => send(buildMainTask(project)))

@@ -1,34 +1,27 @@
-import { EngineData, EngineDataArchetype } from 'sonolus-core'
-import { EngineDataArchetypeCallback } from 'sonolus-core/dist/common/core/engine/data/archetype.js'
+import {
+    EnginePlayData,
+    EnginePlayDataArchetype,
+    EnginePlayDataArchetypeCallback,
+} from 'sonolus-core'
+import { ArchetypeCallback } from 'sonolus.js-compiler/play'
 import { writeJs } from '../../../utils.js'
 
-const Callbacks = [
-    'preprocess',
-    'spawnOrder',
-    'shouldSpawn',
-    'initialize',
-    'updateSequential',
-    'touch',
-    'updateParallel',
-    'terminate',
-] as const
-type Callback = (typeof Callbacks)[number]
-
-export const extractEngineDataArchetypeCallbacks = async (
-    archetype: EngineDataArchetype,
-    data: EngineData,
+export const extractEnginePlayDataArchetypeCallbacks = async (
+    archetype: EnginePlayDataArchetype,
+    playData: EnginePlayData,
     dev: string,
 ): Promise<void> => {
-    const print = createNodePrinter(data)
+    const print = createNodePrinter(playData)
 
     await Promise.all(
-        Callbacks.map((name) => [name, archetype[name]])
-            .filter((kvp): kvp is [Callback, EngineDataArchetypeCallback] => !!kvp[1])
+        Object.values(ArchetypeCallback)
+            .map((name) => [name, archetype[name]])
+            .filter((kvp): kvp is [ArchetypeCallback, EnginePlayDataArchetypeCallback] => !!kvp[1])
             .map(([name, callback]) => extract(name, callback, archetype, print, dev)),
     )
 }
 
-const createNodePrinter = (data: EngineData) => {
+const createNodePrinter = (playData: EnginePlayData) => {
     const cache = new Map<number, string[]>()
 
     const shouldWrap = (func: string, args: string[][]) => {
@@ -53,7 +46,7 @@ const createNodePrinter = (data: EngineData) => {
         const result = cache.get(index)
         if (result !== undefined) return result
 
-        const node = data.nodes[index]
+        const node = playData.nodes[index]
 
         const text = 'value' in node ? [`${node.value}`] : format(node.func, node.args.map(get))
         cache.set(index, text)
@@ -64,9 +57,9 @@ const createNodePrinter = (data: EngineData) => {
 }
 
 const extract = async (
-    name: Callback,
-    callback: EngineDataArchetypeCallback,
-    archetype: EngineDataArchetype,
+    name: ArchetypeCallback,
+    callback: EnginePlayDataArchetypeCallback,
+    archetype: EnginePlayDataArchetype,
     print: (index: number) => string[],
     dev: string,
 ) => {
@@ -78,5 +71,5 @@ const extract = async (
         '',
     ].join('\n')
 
-    await writeJs(js, [dev, 'engine', 'data', 'archetypes', `${archetype.name}`, `${name}.js`])
+    await writeJs(js, [dev, 'engine', 'playData', 'archetypes', `${archetype.name}`, `${name}.js`])
 }

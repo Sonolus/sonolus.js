@@ -7,7 +7,7 @@ import {
     MainTask,
     MainTaskArtifacts,
     assemble,
-} from 'sonolus.js-compiler'
+} from 'sonolus.js-compiler/play'
 import { FullSonolusCLIConfig } from '../../config.js'
 import { getOutfile } from '../../esbuild.js'
 import { createPlugin, stopwatch } from '../utils.js'
