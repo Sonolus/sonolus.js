@@ -5,8 +5,8 @@ import { buildOptions } from '../esbuild.js'
 import { compilerPlugin } from '../plugins/compiler/index.js'
 import { preBuildPlugin } from '../plugins/preBuild/index.js'
 
-export const buildCLI = async (): Promise<void> => {
-    const config = await loadConfig('build')
+export const buildCLI = async (configPath: string): Promise<void> => {
+    const config = await loadConfig('build', configPath)
 
     await fs.ensureDir(config.dev)
     await fs.ensureDir(config.dist)

@@ -8,8 +8,8 @@ import { postBuildPlugin } from '../plugins/postBuild/index.js'
 import { preBuildPlugin } from '../plugins/preBuild/index.js'
 import { serve } from './server/index.js'
 
-export const devCLI = async (): Promise<void> => {
-    const config = await loadConfig('dev')
+export const devCLI = async (configPath: string): Promise<void> => {
+    const config = await loadConfig('dev', configPath)
 
     await fs.ensureDir(config.dev)
 

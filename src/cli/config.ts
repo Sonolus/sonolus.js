@@ -7,12 +7,6 @@ import { Sonolus } from 'sonolus-express'
 import { Artifacts } from 'sonolus.js-compiler/play'
 import { importDefault } from './utils.js'
 
-const configPaths = [
-    './sonolus-cli.config.js',
-    './sonolus-cli.config.mjs',
-    './sonolus-cli.config.cjs',
-]
-
 type MaybePromise<T> = T | Promise<T>
 
 export type FullSonolusCLIConfig = {
@@ -34,16 +28,11 @@ export type FullSonolusCLIConfig = {
 
 export type SonolusCLIConfig = Partial<Omit<FullSonolusCLIConfig, 'mode'>>
 
-export const loadConfig = async (mode: 'dev' | 'build'): Promise<FullSonolusCLIConfig> => {
-    let config = {}
-    for (const configPath of configPaths) {
-        try {
-            config = await importDefault(configPath)
-            break
-        } catch (error) {
-            // noop
-        }
-    }
+export const loadConfig = async (
+    mode: 'dev' | 'build',
+    configPath: string,
+): Promise<FullSonolusCLIConfig> => {
+    const config: SonolusCLIConfig = await importDefault(configPath)
 
     return {
         entry: './src/index.ts',
