@@ -9,13 +9,16 @@
     "Sonolus"
   ],
   "type": "module",
-  "main": "dist/lib/index.js",
-  "files": [
-    "dist"
-  ],
+  "exports": {
+    "./play": "./dist/lib/index.play.js",
+    "./tutorial": "./dist/lib/index.tutorial.js"
+  },
   "bin": {
     "sonolus-cli": "dist/cli/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "prebuild": "tsc -p . --noEmit && eslint --ext .ts ./src",
     "build": "tsc -p . && node ./build.js"
