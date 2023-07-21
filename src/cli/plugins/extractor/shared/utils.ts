@@ -7,6 +7,8 @@ export const readJsonResource = async <T>(paths: string[]): Promise<T> =>
 
 export const empty = (paths: string[]): Promise<void> => fs.emptyDir(path.join(...paths))
 
+export const remove = (paths: string[]): Promise<void> => fs.remove(path.join(...paths))
+
 export const writeJson = (data: unknown, paths: string[]): Promise<void> =>
     fs.outputJson(path.join(...paths), data, { spaces: 4 })
 
