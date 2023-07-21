@@ -8,7 +8,7 @@ import {
     MainTaskArtifacts,
     assemble,
 } from 'sonolus.js-compiler/play'
-import { FullSonolusCLIConfig } from '../../config.js'
+import { FullSonolusCLIConfig, PlaySonolusCLIConfig } from '../../config.js'
 import { getOutfile } from '../../esbuild.js'
 import { createPlugin, stopwatch } from '../utils.js'
 import { MainToWorkerMessage, WorkerToMainMessage } from './message.js'
@@ -20,7 +20,9 @@ const workerPreloadUrl = new URL('./worker-preload.js', import.meta.url)
 export const compilerPlugin = (config: FullSonolusCLIConfig): Plugin => {
     const workerPool = createPool(config.preloadLib ? workerPreloadUrl : workerUrl)
 
-    return createPlugin('Compiler', () => stopwatch('Compiling', () => compile(config, workerPool)))
+    return createPlugin('Compiler', () =>
+        stopwatch('Compiling', () => compile(config as never, workerPool)),
+    )
 }
 
 type ManagedWorker = {
@@ -28,7 +30,7 @@ type ManagedWorker = {
     state: 'initializing' | 'idle' | 'busy'
 }
 
-const compile = (config: FullSonolusCLIConfig, workerPool: WorkerPool) =>
+const compile = (config: PlaySonolusCLIConfig, workerPool: WorkerPool) =>
     new Promise<void>((resolve, reject) => {
         const count = Math.max(1, config.workerCount)
         const managedWorkers: ManagedWorker[] = []

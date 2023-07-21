@@ -4,12 +4,13 @@ import path from 'node:path'
 import { cpus } from 'os'
 import { compress } from 'sonolus-core'
 import { Sonolus } from 'sonolus-express'
-import { Artifacts } from 'sonolus.js-compiler/play'
+import { Artifacts as PlayArtifacts } from 'sonolus.js-compiler/play'
+import { Artifacts as TutorialArtifacts } from 'sonolus.js-compiler/tutorial'
 import { importDefault } from './utils.js'
 
 type MaybePromise<T> = T | Promise<T>
 
-export type FullSonolusCLIConfig = {
+type BaseSonolusCLIConfig = {
     mode: 'dev' | 'build'
 
     entry: string
@@ -23,19 +24,31 @@ export type FullSonolusCLIConfig = {
 
     esbuild(this: FullSonolusCLIConfig, options: BuildOptions): MaybePromise<BuildOptions>
     devServer(this: FullSonolusCLIConfig, sonolus: Sonolus): MaybePromise<void>
-    export(this: FullSonolusCLIConfig, artifacts: Artifacts): MaybePromise<void>
 }
 
-export type SonolusCLIConfig = Partial<Omit<FullSonolusCLIConfig, 'mode'>>
+export type PlaySonolusCLIConfig = BaseSonolusCLIConfig & {
+    type: 'play'
+
+    export(this: PlaySonolusCLIConfig, artifacts: PlayArtifacts): MaybePromise<void>
+}
+
+export type TutorialSonolusCLIConfig = BaseSonolusCLIConfig & {
+    type: 'tutorial'
+
+    export(this: TutorialSonolusCLIConfig, artifacts: TutorialArtifacts): MaybePromise<void>
+}
+
+export type FullSonolusCLIConfig = PlaySonolusCLIConfig | TutorialSonolusCLIConfig
+
+export type SonolusCLIConfig =
+    | Partial<Omit<PlaySonolusCLIConfig, 'mode'>>
+    | Partial<Omit<TutorialSonolusCLIConfig, 'mode'>>
 
 export const loadConfig = async (
     mode: 'dev' | 'build',
     configPath: string,
 ): Promise<FullSonolusCLIConfig> => {
-    const config: SonolusCLIConfig = await importDefault(configPath)
-
-    return {
-        entry: './src/index.ts',
+    const base = {
         dev: './.dev',
         dist: './dist',
         port: 8080,
@@ -51,23 +64,63 @@ export const loadConfig = async (
         devServer() {
             // noop
         },
+    } satisfies SonolusCLIConfig
 
-        async export(artifacts) {
-            const output = async (name: string, data: unknown) =>
-                fs.outputFile(
-                    path.join(this.mode === 'dev' ? this.dev : this.dist, name),
-                    await compress(data),
-                )
+    const config: SonolusCLIConfig = await importDefault(configPath)
 
-            await Promise.all([
-                output('EngineConfiguration', artifacts.engine.configuration),
-                output('EnginePlayData', artifacts.engine.playData),
-                output('LevelData', artifacts.level.data),
-            ])
-        },
+    switch (config.type) {
+        case 'play':
+            return {
+                type: 'play',
+                entry: './play/src/index.ts',
 
-        ...config,
+                ...base,
 
-        mode,
+                async export(artifacts) {
+                    const output = async (name: string, data: unknown) =>
+                        fs.outputFile(
+                            path.join(this.mode === 'dev' ? this.dev : this.dist, name),
+                            await compress(data),
+                        )
+
+                    await Promise.all([
+                        output('EngineConfiguration', artifacts.engine.configuration),
+                        output('EnginePlayData', artifacts.engine.playData),
+                        output('LevelData', artifacts.level.data),
+                    ])
+                },
+
+                ...config,
+
+                mode,
+            }
+
+        case 'tutorial':
+            return {
+                type: 'tutorial',
+                entry: './tutorial/src/index.ts',
+
+                ...base,
+
+                async export(artifacts) {
+                    const output = async (name: string, data: unknown) =>
+                        fs.outputFile(
+                            path.join(this.mode === 'dev' ? this.dev : this.dist, name),
+                            await compress(data),
+                        )
+
+                    await Promise.all([
+                        output('EngineConfiguration', artifacts.engine.configuration),
+                        output('EngineTutorialData', artifacts.engine.tutorialData),
+                    ])
+                },
+
+                ...config,
+
+                mode,
+            }
+
+        default:
+            throw new Error(`Unexpected config type: ${config.type}`)
     }
 }
