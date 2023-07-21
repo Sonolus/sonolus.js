@@ -1,5 +1,5 @@
 import { EngineConfiguration } from 'sonolus-core'
-import { writeJson } from '../../utils.js'
+import { writeJson } from '../../../utils.js'
 
 export const extractEngineConfigurationUI = async (
     configuration: EngineConfiguration,

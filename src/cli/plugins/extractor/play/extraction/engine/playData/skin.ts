@@ -1,5 +1,5 @@
 import { EnginePlayData } from 'sonolus-core'
-import { writeJson } from '../../utils.js'
+import { writeJson } from '../../../../shared/utils.js'
 
 export const extractEnginePlayDataSkin = async (
     playData: EnginePlayData,

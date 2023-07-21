@@ -1,5 +1,5 @@
 import { EnginePlayDataArchetype } from 'sonolus-core'
-import { writeJson } from '../../../utils.js'
+import { writeJson } from '../../../../../shared/utils.js'
 
 export const extractEnginePlayDataArchetypeData = async (
     archetype: EnginePlayDataArchetype,
