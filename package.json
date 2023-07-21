@@ -10,6 +10,7 @@
   ],
   "type": "module",
   "exports": {
+    ".": "./dist/lib/index.js",
     "./play": "./dist/lib/index.play.js",
     "./tutorial": "./dist/lib/index.tutorial.js"
   },
