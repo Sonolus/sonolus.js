@@ -1,21 +1,9 @@
-import { parentPort } from 'node:worker_threads'
 import { Project, buildCompileTask, buildMainTask } from 'sonolus.js-compiler/play'
-import { importDefault } from '../../utils.js'
+import { importDefault } from '../../../utils.js'
+import { createWorker } from '../shared/worker.js'
 import { MainToWorkerMessage, WorkerToMainMessage } from './message.js'
 
-if (!parentPort) throw 'Unexpected missing parentPort'
-const mainPort = parentPort
-
-const send = (message: WorkerToMainMessage) => mainPort.postMessage(message)
-const onReceive = <T extends MainToWorkerMessage['type']>(
-    type: T,
-    handler: (message: Extract<MainToWorkerMessage, { type: T }>) => void,
-) =>
-    mainPort.on('message', (message: WorkerToMainMessage) => {
-        if (message.type !== type) return
-
-        handler(message as never)
-    })
+const { send, onReceive } = createWorker<MainToWorkerMessage, WorkerToMainMessage>()
 
 onReceive('load', async ({ entry }) => {
     const project = await importDefault<Project>(entry)
