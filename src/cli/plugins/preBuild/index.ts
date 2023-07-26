@@ -12,7 +12,7 @@ export const preBuildPlugin = (): Plugin => ({
             console.log('Building...')
         })
 
-        build.onEnd(async (result) => {
+        build.onEnd((result) => {
             if (result.errors.length) return
 
             const duration = Date.now() - startTime

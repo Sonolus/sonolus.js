@@ -4,6 +4,7 @@ type Direction = 'In' | 'Out' | 'InOut' | 'OutIn'
 type Curve = 'Sine' | 'Quad' | 'Cubic' | 'Quart' | 'Quint' | 'Expo' | 'Circ' | 'Back' | 'Elastic'
 
 declare global {
+    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface Math {
         clamp(x: number, a: number, b: number): number
         degree(value: number): number

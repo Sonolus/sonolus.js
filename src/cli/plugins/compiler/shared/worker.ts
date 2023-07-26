@@ -11,7 +11,7 @@ export const createWorker = <
         handler: (message: Extract<TMainToWorkerMessage, { type: T }>) => void,
     ): void
 } => {
-    if (!parentPort) throw 'Unexpected missing parentPort'
+    if (!parentPort) throw new Error('Unexpected missing parentPort')
     const mainPort = parentPort
 
     return {

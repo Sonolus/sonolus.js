@@ -70,7 +70,7 @@ const compile = (config: TutorialSonolusCLIConfig, workerPool: WorkerPool) =>
         }
 
         const onUpdate = async () => {
-            if (tasks?.length === 0 && managedWorkers.every(({ state }) => state !== 'busy')) {
+            if (tasks.length === 0 && managedWorkers.every(({ state }) => state !== 'busy')) {
                 if (mainArtifacts.length !== 1) return terminate('Unexpected artifacts state')
 
                 compileArtifacts.sort(
@@ -93,7 +93,7 @@ const compile = (config: TutorialSonolusCLIConfig, workerPool: WorkerPool) =>
             const managedWorker = managedWorkers.find(({ state }) => state === 'idle')
             if (!managedWorker) return
 
-            const task = tasks?.shift()
+            const task = tasks.shift()
             if (!task) return
 
             send(managedWorker, task)

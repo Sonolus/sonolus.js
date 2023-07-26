@@ -8,6 +8,7 @@ import {
 import { implement, passThrough } from './utils.js'
 
 declare global {
+    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface ArrayConstructor {
         range(length: number): number[]
     }

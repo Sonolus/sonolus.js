@@ -6,8 +6,8 @@ export type WorkerPool = {
 }
 
 export const createPool = (url: URL): WorkerPool => {
-    const loadingWorkers: Set<Worker> = new Set()
-    const readiedWorkers: Set<Worker> = new Set()
+    const loadingWorkers = new Set<Worker>()
+    const readiedWorkers = new Set<Worker>()
 
     const queue: [count: number, resolve: (value: Worker[]) => void][] = []
 

@@ -12,6 +12,7 @@ export const createPlugin = (name: string, onEnd: () => Promise<void>): Plugin =
                 return {
                     errors: [
                         {
+                            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                             text: error instanceof Error && error.stack ? error.stack : `${error}`,
                         },
                     ],
