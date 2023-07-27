@@ -3,7 +3,7 @@
         "lib": [
             "ESNext"
         ],
-        "target": "ES2021",
+        "target": "ESNext",
         "module": "Node16",
         "moduleResolution": "Node16",
         "strict": true,
