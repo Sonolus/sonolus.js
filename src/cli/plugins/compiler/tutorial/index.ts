@@ -5,7 +5,6 @@ import {
     CompileTaskArtifacts,
     MainTask,
     MainTaskArtifacts,
-    TutorialCallback,
     assemble,
 } from 'sonolus.js-compiler/tutorial'
 import { TutorialSonolusCLIConfig } from '../../../config.js'
@@ -33,18 +32,8 @@ const compile = (config: TutorialSonolusCLIConfig, workerPool: WorkerPool) =>
         const count = Math.max(1, config.workerCount)
         const managedWorkers: ManagedWorker[] = []
 
-        const tasks = [
-            {
-                type: 'main',
-            } satisfies MainTask,
-            ...Object.values(TutorialCallback).map(
-                (callback): CompileTask => ({
-                    type: 'compile',
-                    callback,
-                    optimizationLevel: config.optimizationLevel,
-                }),
-            ),
-        ]
+        let scanned = false
+        let tasks: (MainTask | CompileTask)[] | undefined
         const mainArtifacts: MainTaskArtifacts[] = []
         const compileArtifacts: CompileTaskArtifacts[] = []
 
@@ -70,19 +59,13 @@ const compile = (config: TutorialSonolusCLIConfig, workerPool: WorkerPool) =>
         }
 
         const onUpdate = async () => {
-            if (tasks.length === 0 && managedWorkers.every(({ state }) => state !== 'busy')) {
+            if (tasks?.length === 0 && managedWorkers.every(({ state }) => state !== 'busy')) {
                 if (mainArtifacts.length !== 1) return terminate('Unexpected artifacts state')
-
-                compileArtifacts.sort(
-                    (a, b) =>
-                        Object.values(TutorialCallback).indexOf(a.callback) -
-                        Object.values(TutorialCallback).indexOf(b.callback),
-                )
 
                 const artifacts = assemble(mainArtifacts[0], compileArtifacts)
 
                 try {
-                    await config.export(artifacts as never)
+                    await config.export(artifacts)
                 } catch (error) {
                     return terminate(error)
                 }
@@ -93,7 +76,16 @@ const compile = (config: TutorialSonolusCLIConfig, workerPool: WorkerPool) =>
             const managedWorker = managedWorkers.find(({ state }) => state === 'idle')
             if (!managedWorker) return
 
-            const task = tasks.shift()
+            if (!scanned) {
+                scanned = true
+
+                send(managedWorker, {
+                    type: 'scan',
+                })
+                return
+            }
+
+            const task = tasks?.shift()
             if (!task) return
 
             send(managedWorker, task)
@@ -113,6 +105,27 @@ const compile = (config: TutorialSonolusCLIConfig, workerPool: WorkerPool) =>
                         case 'ready':
                             if (managedWorker.state !== 'initializing')
                                 return terminate('Unexpected worker state')
+                            break
+
+                        case 'scan':
+                            if (managedWorker.state !== 'busy')
+                                return terminate('Unexpected worker state')
+
+                            tasks = [
+                                {
+                                    type: 'main',
+                                },
+                                ...message.counts.flatMap(({ callback, count }) =>
+                                    [...Array(count).keys()].map(
+                                        (index): CompileTask => ({
+                                            type: 'compile',
+                                            callback,
+                                            index,
+                                            optimizationLevel: config.optimizationLevel,
+                                        }),
+                                    ),
+                                ),
+                            ]
                             break
 
                         case 'main':
