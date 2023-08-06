@@ -12,6 +12,7 @@
   "main": "dist/lib/index.js",
   "exports": {
     ".": "./dist/lib/index.js",
+    "./shared": "./dist/lib/index.shared.js",
     "./play": "./dist/lib/index.play.js",
     "./tutorial": "./dist/lib/index.tutorial.js"
   },
