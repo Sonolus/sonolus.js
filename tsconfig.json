@@ -3,9 +3,9 @@
         "lib": [
             "ESNext"
         ],
-        "module": "NodeNext",
         "target": "ESNext",
-        "moduleResolution": "NodeNext",
+        "module": "Node16",
+        "moduleResolution": "Node16",
         "strict": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
