@@ -1,6 +1,6 @@
 {
   "name": "sonolus.js",
-  "version": "9.1.0",
+  "version": "9.1.1",
   "description": "TypeScript based Developer Toolkit for Sonolus",
   "author": "NonSpicyBurrito",
   "repository": "github:Sonolus/sonolus.js",
@@ -34,7 +34,7 @@
   "peerDependencies": {
     "sonolus-core": "~7.2.0",
     "sonolus-express": "~6.1.0",
-    "sonolus.js-compiler": "~1.2.0"
+    "sonolus.js-compiler": "~1.2.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
