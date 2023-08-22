@@ -14,6 +14,7 @@
     ".": "./dist/lib/index.js",
     "./shared": "./dist/lib/index.shared.js",
     "./play": "./dist/lib/index.play.js",
+    "./preview": "./dist/lib/index.preview.js",
     "./tutorial": "./dist/lib/index.tutorial.js"
   },
   "bin": {
