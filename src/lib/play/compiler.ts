@@ -46,7 +46,6 @@ declare global {
     type Bucket = import('sonolus.js-compiler/play').Bucket
     const defineEffect: Compiler['defineEffect']
     type EffectClip = import('sonolus.js-compiler/play').EffectClip
-    const defineLib: Compiler['defineLib']
     const defineOptions: Compiler['defineOptions']
     const defineParticle: Compiler['defineParticle']
     type ParticleEffect = import('sonolus.js-compiler/play').ParticleEffect
