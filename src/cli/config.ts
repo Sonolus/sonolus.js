@@ -7,7 +7,7 @@ import { Sonolus } from 'sonolus-express'
 import { Artifacts as PlayArtifacts } from 'sonolus.js-compiler/play'
 import { Artifacts as PreviewArtifacts } from 'sonolus.js-compiler/preview'
 import { Artifacts as TutorialArtifacts } from 'sonolus.js-compiler/tutorial'
-import { importDefault } from './utils.js'
+import { getConfigPath, importDefault } from './utils.js'
 
 type MaybePromise<T> = T | Promise<T>
 
@@ -77,13 +77,13 @@ export const loadConfig = async (
         },
     } satisfies SonolusCLIConfig
 
-    const config: SonolusCLIConfig = await importDefault(configPath)
+    const config: SonolusCLIConfig = await importDefault(getConfigPath(configPath))
 
     switch (config.type) {
         case 'play':
             return {
                 type: 'play',
-                entry: './play/src/index.ts',
+                entry: './play/src',
 
                 ...base,
 
@@ -109,7 +109,7 @@ export const loadConfig = async (
         case 'preview':
             return {
                 type: 'preview',
-                entry: './preview/src/index.ts',
+                entry: './preview/src',
 
                 ...base,
 
@@ -135,7 +135,7 @@ export const loadConfig = async (
         case 'tutorial':
             return {
                 type: 'tutorial',
-                entry: './tutorial/src/index.ts',
+                entry: './tutorial/src',
 
                 ...base,
 
