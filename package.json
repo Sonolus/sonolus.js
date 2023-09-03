@@ -24,7 +24,7 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "tsc -p . --noEmit && eslint --ext .ts ./src",
+    "prebuild": "tsc -p . --noEmit && eslint --ext .ts ./src && prettier . --check",
     "build": "tsc -p . && node ./build.js"
   },
   "dependencies": {
@@ -45,7 +45,6 @@
     "@typescript-eslint/parser": "^6.5.0",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3",
     "prettier-plugin-organize-imports": "^3.2.3",
     "typescript": "~5.2.2"
