@@ -24,7 +24,7 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "tsc -p . --noEmit && eslint --ext .ts ./src && prettier . --check",
+    "prebuild": "tsc -p . --noEmit && eslint . && prettier . --check",
     "build": "tsc -p . && node ./build.js"
   },
   "dependencies": {
