@@ -1,9 +1,10 @@
 import { BuildOptions } from 'esbuild'
 import path from 'node:path'
 import { FullSonolusCLIConfig } from './config.js'
+import { getEntryPath } from './utils.js'
 
 export const buildOptions = (config: FullSonolusCLIConfig): BuildOptions => ({
-    entryPoints: [config.entry],
+    entryPoints: [getEntryPath(config.entry)],
 
     bundle: true,
     platform: 'node',

@@ -39,19 +39,12 @@ declare global {
     type EffectClip = import('sonolus.js-compiler/tutorial').EffectClip
     const defineInstruction: Compiler['defineInstruction']
     type InstructionText = import('sonolus.js-compiler/tutorial').InstructionText
-    const defineLib: Compiler['defineLib']
     const defineOptions: Compiler['defineOptions']
     const defineParticle: Compiler['defineParticle']
     type ParticleEffect = import('sonolus.js-compiler/tutorial').ParticleEffect
     const defineSkin: Compiler['defineSkin']
     type SkinSprite = import('sonolus.js-compiler/tutorial').SkinSprite
 
-    const EntityState: Compiler['EntityState']
-    type EntityState = import('sonolus.js-compiler/tutorial').EntityState
-    const HorizontalAlign: Compiler['HorizontalAlign']
-    type HorizontalAlign = import('sonolus.js-compiler/tutorial').HorizontalAlign
-    const Judgment: Compiler['Judgment']
-    type Judgment = import('sonolus.js-compiler/tutorial').Judgment
     const NavigationDirection: Compiler['NavigationDirection']
     type NavigationDirection = import('sonolus.js-compiler/tutorial').NavigationDirection
     const TutorialCallback: Compiler['TutorialCallback']

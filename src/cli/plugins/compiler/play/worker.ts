@@ -1,12 +1,12 @@
 import { Project, buildCompileTask, buildMainTask } from 'sonolus.js-compiler/play'
-import { importDefault } from '../../../utils.js'
+import { getEntryPath, importDefault } from '../../../utils.js'
 import { createWorker } from '../shared/worker.js'
 import { MainToWorkerMessage, WorkerToMainMessage } from './message.js'
 
 const { send, onReceive } = createWorker<MainToWorkerMessage, WorkerToMainMessage>()
 
 onReceive('load', async ({ entry }) => {
-    const project = await importDefault<Project>(entry)
+    const project = await importDefault<Project>(getEntryPath(entry))
 
     onReceive('scan', () =>
         send({

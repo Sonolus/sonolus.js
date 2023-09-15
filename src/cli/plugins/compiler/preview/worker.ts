@@ -1,9 +1,4 @@
-import {
-    Project,
-    TutorialCallback,
-    buildCompileTask,
-    buildMainTask,
-} from 'sonolus.js-compiler/tutorial'
+import { Project, buildCompileTask, buildMainTask } from 'sonolus.js-compiler/preview'
 import { getEntryPath, importDefault } from '../../../utils.js'
 import { createWorker } from '../shared/worker.js'
 import { MainToWorkerMessage, WorkerToMainMessage } from './message.js'
@@ -16,10 +11,7 @@ onReceive('load', async ({ entry }) => {
     onReceive('scan', () =>
         send({
             type: 'scan',
-            counts: Object.values(TutorialCallback).map((callback) => ({
-                callback,
-                count: project.engine.tutorialData.tutorial[callback]?.length ?? 0,
-            })),
+            archetypes: Object.keys(project.engine.previewData.archetypes),
         }),
     )
     onReceive('main', () => send(buildMainTask(project)))

@@ -5,8 +5,9 @@ import { cpus } from 'os'
 import { compress } from 'sonolus-core'
 import { Sonolus } from 'sonolus-express'
 import { Artifacts as PlayArtifacts } from 'sonolus.js-compiler/play'
+import { Artifacts as PreviewArtifacts } from 'sonolus.js-compiler/preview'
 import { Artifacts as TutorialArtifacts } from 'sonolus.js-compiler/tutorial'
-import { importDefault } from './utils.js'
+import { getConfigPath, importDefault } from './utils.js'
 
 type MaybePromise<T> = T | Promise<T>
 
@@ -32,16 +33,26 @@ export type PlaySonolusCLIConfig = BaseSonolusCLIConfig & {
     export(this: PlaySonolusCLIConfig, artifacts: PlayArtifacts): MaybePromise<void>
 }
 
+export type PreviewSonolusCLIConfig = BaseSonolusCLIConfig & {
+    type: 'preview'
+
+    export(this: PreviewSonolusCLIConfig, artifacts: PreviewArtifacts): MaybePromise<void>
+}
+
 export type TutorialSonolusCLIConfig = BaseSonolusCLIConfig & {
     type: 'tutorial'
 
     export(this: TutorialSonolusCLIConfig, artifacts: TutorialArtifacts): MaybePromise<void>
 }
 
-export type FullSonolusCLIConfig = PlaySonolusCLIConfig | TutorialSonolusCLIConfig
+export type FullSonolusCLIConfig =
+    | PlaySonolusCLIConfig
+    | PreviewSonolusCLIConfig
+    | TutorialSonolusCLIConfig
 
 export type SonolusCLIConfig =
     | Partial<Omit<PlaySonolusCLIConfig, 'mode'>>
+    | Partial<Omit<PreviewSonolusCLIConfig, 'mode'>>
     | Partial<Omit<TutorialSonolusCLIConfig, 'mode'>>
 
 export const loadConfig = async (
@@ -66,13 +77,13 @@ export const loadConfig = async (
         },
     } satisfies SonolusCLIConfig
 
-    const config: SonolusCLIConfig = await importDefault(configPath)
+    const config: SonolusCLIConfig = await importDefault(getConfigPath(configPath))
 
     switch (config.type) {
         case 'play':
             return {
                 type: 'play',
-                entry: './play/src/index.ts',
+                entry: './play/src',
 
                 ...base,
 
@@ -95,10 +106,36 @@ export const loadConfig = async (
                 mode,
             }
 
+        case 'preview':
+            return {
+                type: 'preview',
+                entry: './preview/src',
+
+                ...base,
+
+                async export(artifacts) {
+                    const output = async (name: string, data: unknown) =>
+                        fs.outputFile(
+                            path.join(this.mode === 'dev' ? this.dev : this.dist, name),
+                            await compress(data),
+                        )
+
+                    await Promise.all([
+                        output('EngineConfiguration', artifacts.engine.configuration),
+                        output('EnginePreviewData', artifacts.engine.previewData),
+                        output('LevelData', artifacts.level.data),
+                    ])
+                },
+
+                ...config,
+
+                mode,
+            }
+
         case 'tutorial':
             return {
                 type: 'tutorial',
-                entry: './tutorial/src/index.ts',
+                entry: './tutorial/src',
 
                 ...base,
 
