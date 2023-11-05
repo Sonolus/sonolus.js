@@ -63,13 +63,14 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
 
     sonolus.db.engines.push({
         name: 'dev',
-        version: 10,
+        version: 11,
         title: { en: 'Dev Engine' },
         subtitle: { en: 'Unknown' },
         author: { en: 'Unknown' },
         description: {},
         thumbnail: empty('EngineThumbnail'),
         playData: root('EnginePlayData'),
+        watchData: root('EngineWatchData'),
         previewData: root('EnginePreviewData'),
         tutorialData: root('EngineTutorialData'),
         configuration: root('EngineConfiguration'),

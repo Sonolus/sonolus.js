@@ -1,7 +1,7 @@
 import { Plugin } from 'esbuild'
 import { Worker } from 'node:worker_threads'
 import {
-    ArchetypeCallback,
+    Callback,
     CompileTask,
     CompileTaskArtifacts,
     MainTask,
@@ -66,8 +66,8 @@ const compile = (config: PlaySonolusCLIConfig, workerPool: WorkerPool) =>
                 compileArtifacts.sort(
                     (a, b) =>
                         a.index - b.index ||
-                        Object.values(ArchetypeCallback).indexOf(a.callback) -
-                            Object.values(ArchetypeCallback).indexOf(b.callback),
+                        Object.values(Callback).indexOf(a.callback) -
+                            Object.values(Callback).indexOf(b.callback),
                 )
 
                 const artifacts = assemble(mainArtifacts[0], compileArtifacts)
@@ -124,7 +124,7 @@ const compile = (config: PlaySonolusCLIConfig, workerPool: WorkerPool) =>
                                     type: 'main',
                                 },
                                 ...message.archetypes.flatMap((archetype) =>
-                                    Object.values(ArchetypeCallback).map(
+                                    Object.values(Callback).map(
                                         (callback): CompileTask => ({
                                             type: 'compile',
                                             archetype,
