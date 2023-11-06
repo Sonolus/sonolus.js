@@ -7,6 +7,7 @@ import { Sonolus } from 'sonolus-express'
 import { Artifacts as PlayArtifacts } from 'sonolus.js-compiler/play'
 import { Artifacts as PreviewArtifacts } from 'sonolus.js-compiler/preview'
 import { Artifacts as TutorialArtifacts } from 'sonolus.js-compiler/tutorial'
+import { Artifacts as WatchArtifacts } from 'sonolus.js-compiler/watch'
 import { getConfigPath, importDefault } from './utils.js'
 
 type MaybePromise<T> = T | Promise<T>
@@ -33,6 +34,12 @@ export type PlaySonolusCLIConfig = BaseSonolusCLIConfig & {
     export(this: PlaySonolusCLIConfig, artifacts: PlayArtifacts): MaybePromise<void>
 }
 
+export type WatchSonolusCLIConfig = BaseSonolusCLIConfig & {
+    type: 'watch'
+
+    export(this: WatchSonolusCLIConfig, artifacts: WatchArtifacts): MaybePromise<void>
+}
+
 export type PreviewSonolusCLIConfig = BaseSonolusCLIConfig & {
     type: 'preview'
 
@@ -47,11 +54,13 @@ export type TutorialSonolusCLIConfig = BaseSonolusCLIConfig & {
 
 export type FullSonolusCLIConfig =
     | PlaySonolusCLIConfig
+    | WatchSonolusCLIConfig
     | PreviewSonolusCLIConfig
     | TutorialSonolusCLIConfig
 
 export type SonolusCLIConfig =
     | Partial<Omit<PlaySonolusCLIConfig, 'mode'>>
+    | Partial<Omit<WatchSonolusCLIConfig, 'mode'>>
     | Partial<Omit<PreviewSonolusCLIConfig, 'mode'>>
     | Partial<Omit<TutorialSonolusCLIConfig, 'mode'>>
 
@@ -97,6 +106,32 @@ export const loadConfig = async (
                     await Promise.all([
                         output('EngineConfiguration', artifacts.engine.configuration),
                         output('EnginePlayData', artifacts.engine.playData),
+                        output('LevelData', artifacts.level.data),
+                    ])
+                },
+
+                ...config,
+
+                mode,
+            }
+
+        case 'watch':
+            return {
+                type: 'watch',
+                entry: './watch/src',
+
+                ...base,
+
+                async export(artifacts) {
+                    const output = async (name: string, data: unknown) =>
+                        fs.outputFile(
+                            path.join(this.mode === 'dev' ? this.dev : this.dist, name),
+                            await compress(data),
+                        )
+
+                    await Promise.all([
+                        output('EngineConfiguration', artifacts.engine.configuration),
+                        output('EngineWatchData', artifacts.engine.watchData),
                         output('LevelData', artifacts.level.data),
                     ])
                 },
