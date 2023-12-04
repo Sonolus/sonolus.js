@@ -7,8 +7,8 @@ import {
     MainTask,
     MainTaskArtifacts,
     assemble,
-} from 'sonolus.js-compiler/play'
-import { PlaySonolusCLIConfig } from '../../../config.js'
+} from 'sonolus.js-compiler/watch'
+import { WatchSonolusCLIConfig } from '../../../config.js'
 import { getOutfile } from '../../../esbuild.js'
 import { createPlugin, stopwatch } from '../../utils.js'
 import { WorkerPool, createPool } from '../shared/pool.js'
@@ -17,7 +17,7 @@ import { MainToWorkerMessage, WorkerToMainMessage } from './message.js'
 const workerUrl = new URL('./worker.js', import.meta.url)
 const workerPreloadUrl = new URL('./worker-preload.js', import.meta.url)
 
-export const playCompilerPlugin = (config: PlaySonolusCLIConfig): Plugin => {
+export const watchCompilerPlugin = (config: WatchSonolusCLIConfig): Plugin => {
     const workerPool = createPool(config.preloadLib ? workerPreloadUrl : workerUrl)
 
     return createPlugin('Compiler', () => stopwatch('Compiling', () => compile(config, workerPool)))
@@ -28,7 +28,7 @@ type ManagedWorker = {
     state: 'initializing' | 'idle' | 'busy'
 }
 
-const compile = (config: PlaySonolusCLIConfig, workerPool: WorkerPool) =>
+const compile = (config: WatchSonolusCLIConfig, workerPool: WorkerPool) =>
     new Promise<void>((resolve, reject) => {
         const count = Math.max(1, config.workerCount)
         const managedWorkers: ManagedWorker[] = []
@@ -65,7 +65,8 @@ const compile = (config: PlaySonolusCLIConfig, workerPool: WorkerPool) =>
 
                 compileArtifacts.sort(
                     (a, b) =>
-                        a.index - b.index ||
+                        (a.callback === Callback.UpdateSpawn ? -1 : a.index) -
+                            (b.callback === Callback.UpdateSpawn ? -1 : b.index) ||
                         Object.values(Callback).indexOf(a.callback) -
                             Object.values(Callback).indexOf(b.callback),
                 )
@@ -122,6 +123,11 @@ const compile = (config: PlaySonolusCLIConfig, workerPool: WorkerPool) =>
                             tasks = [
                                 {
                                     type: 'main',
+                                },
+                                {
+                                    type: 'compile',
+                                    callback: Callback.UpdateSpawn,
+                                    optimizationLevel: config.optimizationLevel,
                                 },
                                 ...message.archetypes.flatMap((archetype) =>
                                     Object.values(Callback).map(

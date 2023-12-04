@@ -42,8 +42,8 @@ declare global {
     const defineSkin: Compiler['defineSkin']
     type SkinSprite = import('sonolus.js-compiler/preview').SkinSprite
 
-    const ArchetypeCallback: Compiler['ArchetypeCallback']
-    type ArchetypeCallback = import('sonolus.js-compiler/preview').ArchetypeCallback
+    const Callback: Compiler['Callback']
+    type Callback = import('sonolus.js-compiler/preview').Callback
     const HorizontalAlign: Compiler['HorizontalAlign']
     type HorizontalAlign = import('sonolus.js-compiler/preview').HorizontalAlign
     const PrintColor: Compiler['PrintColor']

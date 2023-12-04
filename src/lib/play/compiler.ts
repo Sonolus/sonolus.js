@@ -52,8 +52,8 @@ declare global {
     const defineSkin: Compiler['defineSkin']
     type SkinSprite = import('sonolus.js-compiler/play').SkinSprite
 
-    const ArchetypeCallback: Compiler['ArchetypeCallback']
-    type ArchetypeCallback = import('sonolus.js-compiler/play').ArchetypeCallback
+    const Callback: Compiler['Callback']
+    type Callback = import('sonolus.js-compiler/play').Callback
     const EntityState: Compiler['EntityState']
     type EntityState = import('sonolus.js-compiler/play').EntityState
     const HorizontalAlign: Compiler['HorizontalAlign']

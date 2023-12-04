@@ -3,7 +3,7 @@ import {
     EnginePlayDataArchetype,
     EnginePlayDataArchetypeCallback,
 } from 'sonolus-core'
-import { ArchetypeCallback } from 'sonolus.js-compiler/play'
+import { Callback } from 'sonolus.js-compiler/play'
 import { createNodePrinter } from '../../../../../shared/printer.js'
 import { writeJs } from '../../../../../shared/utils.js'
 
@@ -15,15 +15,15 @@ export const extractEnginePlayDataArchetypeCallbacks = async (
     const print = createNodePrinter(playData.nodes)
 
     await Promise.all(
-        Object.values(ArchetypeCallback)
+        Object.values(Callback)
             .map((name) => [name, archetype[name]])
-            .filter((kvp): kvp is [ArchetypeCallback, EnginePlayDataArchetypeCallback] => !!kvp[1])
+            .filter((kvp): kvp is [Callback, EnginePlayDataArchetypeCallback] => !!kvp[1])
             .map(([name, callback]) => extract(name, callback, archetype, print, dev)),
     )
 }
 
 const extract = async (
-    name: ArchetypeCallback,
+    name: Callback,
     callback: EnginePlayDataArchetypeCallback,
     archetype: EnginePlayDataArchetype,
     print: (index: number) => string[],
