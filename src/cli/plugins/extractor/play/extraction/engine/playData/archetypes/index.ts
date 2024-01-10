@@ -1,7 +1,8 @@
 import { EnginePlayData, EnginePlayDataArchetype } from 'sonolus-core'
 import { empty, writeJson } from '../../../../../shared/utils.js'
 import { extractEnginePlayDataArchetypeCallbacks } from './callbacks.js'
-import { extractEnginePlayDataArchetypeData } from './data.js'
+import { extractEnginePlayDataArchetypeExports } from './exports.js'
+import { extractEnginePlayDataArchetypeImports } from './imports.js'
 
 export const extractEnginePlayDataArchetypes = async (
     playData: EnginePlayData,
@@ -22,7 +23,8 @@ const extract = async (
 ) => {
     await Promise.all([
         writeJson(archetype, [dev, 'engine', 'playData', 'archetypes', `${archetype.name}.json`]),
-        extractEnginePlayDataArchetypeData(archetype, dev),
+        extractEnginePlayDataArchetypeImports(archetype, dev),
+        extractEnginePlayDataArchetypeExports(archetype, dev),
         extractEnginePlayDataArchetypeCallbacks(archetype, playData, dev),
     ])
 }

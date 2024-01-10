@@ -1,16 +1,16 @@
 import { EngineWatchDataArchetype } from 'sonolus-core'
 import { writeJson } from '../../../../../shared/utils.js'
 
-export const extractEngineWatchDataArchetypeData = async (
+export const extractEngineWatchDataArchetypeImports = async (
     archetype: EngineWatchDataArchetype,
     dev: string,
 ): Promise<void> => {
-    await writeJson(archetype.data, [
+    await writeJson(archetype.imports, [
         dev,
         'engine',
         'watchData',
         'archetypes',
         `${archetype.name}`,
-        'data.json',
+        'imports.json',
     ])
 }
