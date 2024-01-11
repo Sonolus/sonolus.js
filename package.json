@@ -36,6 +36,7 @@
   "peerDependencies": {
     "sonolus-core": "~7.4.1",
     "sonolus-express": "~6.3.1",
+    "sonolus-free-pack": "~1.0.0",
     "sonolus.js-compiler": "~1.4.0"
   },
   "devDependencies": {
