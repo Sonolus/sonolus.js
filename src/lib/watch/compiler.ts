@@ -89,6 +89,7 @@ declare global {
     type ArchetypeLife = import('sonolus.js-compiler/watch').ArchetypeLife
     type ConsecutiveLife = import('sonolus.js-compiler/watch').ConsecutiveLife
     const native: Compiler['native']
+    const replay: Compiler['replay']
     const score: Compiler['score']
     type ConsecutiveScore = import('sonolus.js-compiler/watch').ConsecutiveScore
     const screen: Compiler['screen']
