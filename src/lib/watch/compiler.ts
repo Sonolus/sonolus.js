@@ -42,6 +42,8 @@ declare global {
     type VecLike = import('sonolus.js-compiler/watch').VecLike
 
     const defineArchetypes: Compiler['defineArchetypes']
+    const defineBuckets: Compiler['defineBuckets']
+    type Bucket = import('sonolus.js-compiler/play').Bucket
     const defineEffect: Compiler['defineEffect']
     type EffectClip = import('sonolus.js-compiler/watch').EffectClip
     const defineOptions: Compiler['defineOptions']
