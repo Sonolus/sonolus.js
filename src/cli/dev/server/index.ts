@@ -14,6 +14,8 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
     const sonolus = new Sonolus(app)
     sonolus.load(packPath)
 
+    sonolus.db.info.title = { en: 'Dev Server' }
+
     sonolus.db.engines.push({
         name: 'dev',
         version: 12,
