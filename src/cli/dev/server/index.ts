@@ -1,7 +1,6 @@
 import express, { Express } from 'express'
 import { NetworkInterfaceInfo, networkInterfaces } from 'node:os'
 import path from 'node:path'
-import { ResourceType } from 'sonolus-core'
 import { Sonolus } from 'sonolus-express'
 import { packPath } from 'sonolus-free-pack'
 import { res } from '../../../res/index.js'
@@ -24,7 +23,7 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
         author: { en: 'Unknown' },
         tags: [],
         description: {},
-        thumbnail: empty('EngineThumbnail'),
+        thumbnail: empty,
         playData: root('EnginePlayData'),
         watchData: root('EngineWatchData'),
         previewData: root('EnginePreviewData'),
@@ -50,8 +49,8 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
         author: { en: 'Unknown' },
         tags: [],
         description: {},
-        cover: empty('LevelCover'),
-        bgm: sonolus.add('LevelBgm', res('silence.mp3')),
+        cover: empty,
+        bgm: sonolus.add(res('silence.mp3')),
         data: root('LevelData'),
     })
 
@@ -60,14 +59,12 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
     return new Promise((resolve) => tryListen(app, config.port, config.host, resolve))
 }
 
-const empty = <T extends ResourceType>(type: T) => ({
-    type,
+const empty = {
     hash: '',
     url: '',
-})
+}
 
-const root = <T extends ResourceType>(type: T) => ({
-    type,
+const root = (type: string) => ({
     hash: '',
     url: `/${type}`,
 })
