@@ -92,6 +92,7 @@ declare global {
     const life: Compiler['life']
     type ArchetypeLife = import('sonolus.js-compiler/play').ArchetypeLife
     type ConsecutiveLife = import('sonolus.js-compiler/play').ConsecutiveLife
+    const multiplayer: Compiler['multiplayer']
     const native: Compiler['native']
     const score: Compiler['score']
     type ConsecutiveScore = import('sonolus.js-compiler/play').ConsecutiveScore
