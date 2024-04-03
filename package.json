@@ -1,5 +1,5 @@
 {
-  "name": "sonolus.js",
+  "name": "@sonolus/sonolus.js",
   "version": "9.3.1",
   "description": "TypeScript based Developer Toolkit for Sonolus",
   "author": "NonSpicyBurrito",
