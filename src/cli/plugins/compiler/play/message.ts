@@ -3,7 +3,7 @@ import {
     CompileTaskArtifacts,
     MainTask,
     MainTaskArtifacts,
-} from 'sonolus.js-compiler/play'
+} from '@sonolus/sonolus.js-compiler/play'
 
 export type MainToWorkerMessage =
     | {

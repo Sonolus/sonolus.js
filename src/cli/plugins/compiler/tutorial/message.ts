@@ -4,7 +4,7 @@ import {
     MainTask,
     MainTaskArtifacts,
     TutorialCallback,
-} from 'sonolus.js-compiler/tutorial'
+} from '@sonolus/sonolus.js-compiler/tutorial'
 
 export type MainToWorkerMessage =
     | {

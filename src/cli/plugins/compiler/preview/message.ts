@@ -3,7 +3,7 @@ import {
     CompileTaskArtifacts,
     MainTask,
     MainTaskArtifacts,
-} from 'sonolus.js-compiler/preview'
+} from '@sonolus/sonolus.js-compiler/preview'
 
 export type MainToWorkerMessage =
     | {

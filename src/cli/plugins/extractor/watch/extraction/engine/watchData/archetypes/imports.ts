@@ -1,4 +1,4 @@
-import { EngineWatchDataArchetype } from 'sonolus-core'
+import { EngineWatchDataArchetype } from '@sonolus/core'
 import { writeJson } from '../../../../../shared/utils.js'
 
 export const extractEngineWatchDataArchetypeImports = async (

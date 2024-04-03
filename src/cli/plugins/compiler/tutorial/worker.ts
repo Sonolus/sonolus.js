@@ -3,7 +3,7 @@ import {
     TutorialCallback,
     buildCompileTask,
     buildMainTask,
-} from 'sonolus.js-compiler/tutorial'
+} from '@sonolus/sonolus.js-compiler/tutorial'
 import { getEntryPath, importDefault } from '../../../utils.js'
 import { createWorker } from '../shared/worker.js'
 import { MainToWorkerMessage, WorkerToMainMessage } from './message.js'

@@ -1,4 +1,4 @@
-import { EngineWatchData } from 'sonolus-core'
+import { EngineWatchData } from '@sonolus/core'
 import { readJsonResource, writeJson } from '../../../../shared/utils.js'
 import { extractEngineWatchDataArchetypes } from './archetypes/index.js'
 import { extractEngineWatchDataEffect } from './effect.js'

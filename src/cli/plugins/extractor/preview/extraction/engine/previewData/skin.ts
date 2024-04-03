@@ -1,4 +1,4 @@
-import { EnginePreviewData } from 'sonolus-core'
+import { EnginePreviewData } from '@sonolus/core'
 import { writeJson } from '../../../../shared/utils.js'
 
 export const extractEnginePreviewDataSkin = async (

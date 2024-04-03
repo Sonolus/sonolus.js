@@ -1,4 +1,4 @@
-import { EnginePreviewDataArchetype } from 'sonolus-core'
+import { EnginePreviewDataArchetype } from '@sonolus/core'
 import { writeJson } from '../../../../../shared/utils.js'
 
 export const extractEnginePreviewDataArchetypeImports = async (

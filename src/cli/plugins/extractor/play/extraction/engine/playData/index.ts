@@ -1,4 +1,4 @@
-import { EnginePlayData } from 'sonolus-core'
+import { EnginePlayData } from '@sonolus/core'
 import { readJsonResource, writeJson } from '../../../../shared/utils.js'
 import { extractEnginePlayDataArchetypes } from './archetypes/index.js'
 import { extractEnginePlayDataBuckets } from './buckets.js'

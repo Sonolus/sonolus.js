@@ -1,4 +1,4 @@
-import { Project, buildCompileTask, buildMainTask } from 'sonolus.js-compiler/preview'
+import { Project, buildCompileTask, buildMainTask } from '@sonolus/sonolus.js-compiler/preview'
 import { getEntryPath, importDefault } from '../../../utils.js'
 import { createWorker } from '../shared/worker.js'
 import { MainToWorkerMessage, WorkerToMainMessage } from './message.js'

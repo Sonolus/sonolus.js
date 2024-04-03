@@ -2,8 +2,8 @@ import {
     EnginePlayData,
     EnginePlayDataArchetype,
     EnginePlayDataArchetypeCallback,
-} from 'sonolus-core'
-import { Callback } from 'sonolus.js-compiler/play'
+} from '@sonolus/core'
+import { Callback } from '@sonolus/sonolus.js-compiler/play'
 import { createNodePrinter } from '../../../../../shared/printer.js'
 import { writeJs } from '../../../../../shared/utils.js'
 
