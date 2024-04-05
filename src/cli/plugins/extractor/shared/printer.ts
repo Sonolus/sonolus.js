@@ -1,4 +1,4 @@
-import { EngineDataNode } from 'sonolus-core'
+import { EngineDataNode } from '@sonolus/core'
 
 export const createNodePrinter = (nodes: EngineDataNode[]): ((index: number) => string[]) => {
     const cache = new Map<number, string[]>()

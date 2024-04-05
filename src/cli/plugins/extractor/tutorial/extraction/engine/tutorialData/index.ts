@@ -1,4 +1,4 @@
-import { EngineTutorialData } from 'sonolus-core'
+import { EngineTutorialData } from '@sonolus/core'
 import { readJsonResource, writeJson } from '../../../../shared/utils.js'
 import { extractEngineTutorialDataCallbacks } from './callbacks.js'
 import { extractEngineTutorialDataEffect } from './effect.js'

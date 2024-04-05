@@ -1,12 +1,12 @@
-import { Plugin } from 'esbuild'
-import { Worker } from 'node:worker_threads'
 import {
     CompileTask,
     CompileTaskArtifacts,
     MainTask,
     MainTaskArtifacts,
     assemble,
-} from 'sonolus.js-compiler/tutorial'
+} from '@sonolus/sonolus.js-compiler/tutorial'
+import { Plugin } from 'esbuild'
+import { Worker } from 'node:worker_threads'
 import { TutorialSonolusCLIConfig } from '../../../config.js'
 import { getOutfile } from '../../../esbuild.js'
 import { createPlugin, stopwatch } from '../../utils.js'

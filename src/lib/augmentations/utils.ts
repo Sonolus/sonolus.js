@@ -1,4 +1,4 @@
-import { Intrinsic } from 'sonolus.js-compiler/internal/intrinsic/index.js'
+import { Intrinsic } from '@sonolus/sonolus.js-compiler/internal/intrinsic/index.js'
 
 type PassThroughKeys<T> = (keyof {
     [K in keyof T as K extends string

@@ -1,5 +1,3 @@
-import { Plugin } from 'esbuild'
-import { Worker } from 'node:worker_threads'
 import {
     Callback,
     CompileTask,
@@ -7,7 +5,9 @@ import {
     MainTask,
     MainTaskArtifacts,
     assemble,
-} from 'sonolus.js-compiler/play'
+} from '@sonolus/sonolus.js-compiler/play'
+import { Plugin } from 'esbuild'
+import { Worker } from 'node:worker_threads'
 import { PlaySonolusCLIConfig } from '../../../config.js'
 import { getOutfile } from '../../../esbuild.js'
 import { createPlugin, stopwatch } from '../../utils.js'

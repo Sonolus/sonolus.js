@@ -1,4 +1,4 @@
-import { EngineWatchData } from 'sonolus-core'
+import { EngineWatchData } from '@sonolus/core'
 import { writeJson } from '../../../../shared/utils.js'
 
 export const extractEngineWatchDataNodes = async (

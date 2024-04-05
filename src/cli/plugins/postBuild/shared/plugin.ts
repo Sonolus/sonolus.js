@@ -1,7 +1,7 @@
+import { hash } from '@sonolus/core'
 import { Plugin } from 'esbuild'
 import fs from 'fs-extra'
 import path from 'node:path'
-import { hash } from 'sonolus-core'
 import { FullSonolusCLIConfig } from '../../../config.js'
 import { createPlugin } from '../../utils.js'
 

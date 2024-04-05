@@ -1,4 +1,4 @@
-import { EnginePreviewData } from 'sonolus-core'
+import { EnginePreviewData } from '@sonolus/core'
 import { readJsonResource, writeJson } from '../../../../shared/utils.js'
 import { extractEnginePreviewDataArchetypes } from './archetypes/index.js'
 import { extractEnginePreviewDataNodes } from './nodes.js'

@@ -1,7 +1,7 @@
-import { EnginePreviewData, EnginePreviewDataArchetype } from 'sonolus-core'
+import { EnginePreviewData, EnginePreviewDataArchetype } from '@sonolus/core'
 import { empty, writeJson } from '../../../../../shared/utils.js'
 import { extractEnginePreviewDataArchetypeCallbacks } from './callbacks.js'
-import { extractEnginePreviewDataArchetypeData } from './data.js'
+import { extractEnginePreviewDataArchetypeImports } from './imports.js'
 
 export const extractEnginePreviewDataArchetypes = async (
     previewData: EnginePreviewData,
@@ -28,7 +28,7 @@ const extract = async (
             'archetypes',
             `${archetype.name}.json`,
         ]),
-        extractEnginePreviewDataArchetypeData(archetype, dev),
+        extractEnginePreviewDataArchetypeImports(archetype, dev),
         extractEnginePreviewDataArchetypeCallbacks(archetype, previewData, dev),
     ])
 }

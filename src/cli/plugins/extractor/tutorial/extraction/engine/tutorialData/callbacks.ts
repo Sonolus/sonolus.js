@@ -1,5 +1,5 @@
-import { EngineTutorialData } from 'sonolus-core'
-import { TutorialCallback } from 'sonolus.js-compiler/tutorial'
+import { EngineTutorialData } from '@sonolus/core'
+import { TutorialCallback } from '@sonolus/sonolus.js-compiler/tutorial'
 import { createNodePrinter } from '../../../../shared/printer.js'
 import { remove, writeJs } from '../../../../shared/utils.js'
 

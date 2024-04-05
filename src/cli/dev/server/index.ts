@@ -1,9 +1,8 @@
+import { Sonolus } from '@sonolus/express'
+import { packPath } from '@sonolus/free-pack'
 import express, { Express } from 'express'
 import { NetworkInterfaceInfo, networkInterfaces } from 'node:os'
 import path from 'node:path'
-import { ResourceType } from 'sonolus-core'
-import { Sonolus } from 'sonolus-express'
-import { packPath } from 'sonolus-free-pack'
 import { res } from '../../../res/index.js'
 import { FullSonolusCLIConfig } from '../../config.js'
 
@@ -14,14 +13,17 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
     const sonolus = new Sonolus(app)
     sonolus.load(packPath)
 
+    sonolus.db.info.title = { en: 'Dev Server' }
+
     sonolus.db.engines.push({
         name: 'dev',
-        version: 11,
+        version: 12,
         title: { en: 'Dev Engine' },
         subtitle: { en: 'Unknown' },
         author: { en: 'Unknown' },
+        tags: [],
         description: {},
-        thumbnail: empty('EngineThumbnail'),
+        thumbnail: empty,
         playData: root('EnginePlayData'),
         watchData: root('EngineWatchData'),
         previewData: root('EnginePreviewData'),
@@ -45,9 +47,10 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
         title: { en: 'Dev Level' },
         artists: { en: 'Unknown' },
         author: { en: 'Unknown' },
+        tags: [],
         description: {},
-        cover: empty('LevelCover'),
-        bgm: sonolus.add('LevelBgm', res('silence.mp3')),
+        cover: empty,
+        bgm: sonolus.add(res('silence.mp3')),
         data: root('LevelData'),
     })
 
@@ -56,14 +59,12 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
     return new Promise((resolve) => tryListen(app, config.port, config.host, resolve))
 }
 
-const empty = <T extends ResourceType>(type: T) => ({
-    type,
+const empty = {
     hash: '',
     url: '',
-})
+}
 
-const root = <T extends ResourceType>(type: T) => ({
-    type,
+const root = (type: string) => ({
     hash: '',
     url: `/${type}`,
 })
