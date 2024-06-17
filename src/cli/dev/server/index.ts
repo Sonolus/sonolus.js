@@ -2,20 +2,17 @@ import { Sonolus } from '@sonolus/express'
 import { packPath } from '@sonolus/free-pack'
 import express, { Express } from 'express'
 import { NetworkInterfaceInfo, networkInterfaces } from 'node:os'
-import path from 'node:path'
+import { resolve } from 'node:path'
 import { res } from '../../../res/index.js'
 import { FullSonolusCLIConfig } from '../../config.js'
 
 export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
-    const app = express()
-    app.use(express.static(path.resolve(config.dev)))
-
-    const sonolus = new Sonolus(app)
+    const sonolus = new Sonolus({})
     sonolus.load(packPath)
 
-    sonolus.db.info.title = { en: 'Dev Server' }
+    sonolus.title = { en: 'Dev Server' }
 
-    sonolus.db.engines.push({
+    sonolus.engine.items.push({
         name: 'dev',
         version: 12,
         title: { en: 'Dev Engine' },
@@ -35,7 +32,7 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
         particle: 'pixel',
     })
 
-    sonolus.db.levels.push({
+    sonolus.level.items.push({
         name: 'dev',
         version: 1,
         rating: 0,
@@ -55,6 +52,10 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
     })
 
     await config.devServer(sonolus)
+
+    const app = express()
+    app.use(express.static(resolve(config.dev)))
+    app.use(sonolus.router)
 
     return new Promise((resolve) => tryListen(app, config.port, config.host, resolve))
 }
