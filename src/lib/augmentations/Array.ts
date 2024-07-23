@@ -35,7 +35,7 @@ passThrough(Array.prototype, [
 ])
 
 implement(Array.prototype, {
-    every: iterableEvery,
+    every: iterableEvery as never,
     findIndex: iterableFindIndex,
     forEach: iterableForEach,
     reduce: iterableReduce,

@@ -12,7 +12,9 @@ export const extractEngineWatchDataUpdateSpawn = async (
     const js = [
         `// ${Callback.UpdateSpawn}()`,
         '',
-        ...(watchData.updateSpawn === -1 ? [] : print(watchData.updateSpawn)),
+        ...(watchData.updateSpawn === undefined || watchData.updateSpawn === -1
+            ? []
+            : print(watchData.updateSpawn)),
         '',
     ].join('\n')
 
