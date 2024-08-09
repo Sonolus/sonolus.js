@@ -24,7 +24,7 @@ const findPath = (path: string, filename: string, extensions: string[]) => {
 const isFile = (path: string) => {
     try {
         return lstatSync(path).isFile()
-    } catch (error) {
+    } catch {
         return false
     }
 }
