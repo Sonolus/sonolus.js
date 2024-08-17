@@ -28,6 +28,7 @@ export default tsEslint.config(
             '@typescript-eslint/no-misused-promises': 'off',
             '@typescript-eslint/unbound-method': 'off',
             '@typescript-eslint/prefer-promise-reject-errors': 'off',
+            '@typescript-eslint/no-unnecessary-type-parameters': 'off',
         },
     },
 
