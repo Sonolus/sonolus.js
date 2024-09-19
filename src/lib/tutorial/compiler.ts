@@ -27,6 +27,9 @@ declare global {
     const Quad: Compiler['Quad']
     type Quad = import('@sonolus/sonolus.js-compiler/tutorial').Quad
     type QuadLike = import('@sonolus/sonolus.js-compiler/tutorial').QuadLike
+    const Range: Compiler['Range']
+    type Range = import('@sonolus/sonolus.js-compiler/tutorial').Range
+    type RangeLike = import('@sonolus/sonolus.js-compiler/tutorial').RangeLike
     const Rect: Compiler['Rect']
     type Rect = import('@sonolus/sonolus.js-compiler/tutorial').Rect
     type RectLike = import('@sonolus/sonolus.js-compiler/tutorial').RectLike
@@ -76,7 +79,6 @@ declare global {
     const background: Compiler['background']
     const compiler: Compiler['compiler']
     const debug: Compiler['debug']
-    type JudgmentWindow = import('@sonolus/sonolus.js-compiler/tutorial').JudgmentWindow
     type JudgmentWindows = import('@sonolus/sonolus.js-compiler/tutorial').JudgmentWindows
     const native: Compiler['native']
     const navigation: Compiler['navigation']

@@ -34,6 +34,9 @@ declare global {
     const Quad: Compiler['Quad']
     type Quad = import('@sonolus/sonolus.js-compiler/watch').Quad
     type QuadLike = import('@sonolus/sonolus.js-compiler/watch').QuadLike
+    const Range: Compiler['Range']
+    type Range = import('@sonolus/sonolus.js-compiler/watch').Range
+    type RangeLike = import('@sonolus/sonolus.js-compiler/watch').RangeLike
     const Rect: Compiler['Rect']
     type Rect = import('@sonolus/sonolus.js-compiler/watch').Rect
     type RectLike = import('@sonolus/sonolus.js-compiler/watch').RectLike
@@ -89,7 +92,6 @@ declare global {
     const entityInfos: Compiler['entityInfos']
     type EntityInfo = import('@sonolus/sonolus.js-compiler/watch').EntityInfo
     const input: Compiler['input']
-    type JudgmentWindow = import('@sonolus/sonolus.js-compiler/watch').JudgmentWindow
     type JudgmentWindows = import('@sonolus/sonolus.js-compiler/watch').JudgmentWindows
     const life: Compiler['life']
     type ArchetypeLife = import('@sonolus/sonolus.js-compiler/watch').ArchetypeLife

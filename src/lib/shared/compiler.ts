@@ -24,6 +24,9 @@ declare global {
     const Quad: Compiler['Quad']
     type Quad = import('@sonolus/sonolus.js-compiler/shared').Quad
     type QuadLike = import('@sonolus/sonolus.js-compiler/shared').QuadLike
+    const Range: Compiler['Range']
+    type Range = import('@sonolus/sonolus.js-compiler/shared').Range
+    type RangeLike = import('@sonolus/sonolus.js-compiler/shared').RangeLike
     const Rect: Compiler['Rect']
     type Rect = import('@sonolus/sonolus.js-compiler/shared').Rect
     type RectLike = import('@sonolus/sonolus.js-compiler/shared').RectLike
@@ -50,7 +53,6 @@ declare global {
     type ScheduledLoopedEffectClipInstanceId =
         import('@sonolus/sonolus.js-compiler/shared').ScheduledLoopedEffectClipInstanceId
 
-    type JudgmentWindow = import('@sonolus/sonolus.js-compiler/shared').JudgmentWindow
     type JudgmentWindows = import('@sonolus/sonolus.js-compiler/shared').JudgmentWindows
     const native: Compiler['native']
 }

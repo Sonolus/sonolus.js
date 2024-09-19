@@ -29,6 +29,9 @@ declare global {
     const Quad: Compiler['Quad']
     type Quad = import('@sonolus/sonolus.js-compiler/preview').Quad
     type QuadLike = import('@sonolus/sonolus.js-compiler/preview').QuadLike
+    const Range: Compiler['Range']
+    type Range = import('@sonolus/sonolus.js-compiler/preview').Range
+    type RangeLike = import('@sonolus/sonolus.js-compiler/preview').RangeLike
     const Rect: Compiler['Rect']
     type Rect = import('@sonolus/sonolus.js-compiler/preview').Rect
     type RectLike = import('@sonolus/sonolus.js-compiler/preview').RectLike
