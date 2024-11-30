@@ -21,7 +21,12 @@ export default tsEslint.config(
         rules: {
             '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
             '@typescript-eslint/explicit-module-boundary-types': 'error',
-            '@typescript-eslint/switch-exhaustiveness-check': 'error',
+            '@typescript-eslint/switch-exhaustiveness-check': [
+                'error',
+                {
+                    considerDefaultExhaustiveForUnions: true,
+                },
+            ],
             '@typescript-eslint/restrict-template-expressions': 'off',
             '@typescript-eslint/no-confusing-void-expression': 'off',
             '@typescript-eslint/no-floating-promises': 'off',
