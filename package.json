@@ -1,6 +1,6 @@
 {
   "name": "@sonolus/sonolus.js",
-  "version": "9.5.2",
+  "version": "9.5.3",
   "description": "TypeScript based Developer Toolkit for Sonolus",
   "author": "NonSpicyBurrito",
   "repository": "github:Sonolus/sonolus.js",
