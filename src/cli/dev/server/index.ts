@@ -14,7 +14,7 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
 
     sonolus.engine.items.push({
         name: 'dev',
-        version: 12,
+        version: 13,
         title: { en: 'Dev Engine' },
         subtitle: { en: 'Unknown' },
         author: { en: 'Unknown' },
