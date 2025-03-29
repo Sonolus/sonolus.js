@@ -31,7 +31,7 @@
     "build": "tsc -p . && node ./build.js"
   },
   "dependencies": {
-    "esbuild": "^0.25.0",
+    "esbuild": "^0.25.1",
     "express": "^4.21.2",
     "fs-extra": "^11.3.0"
   },
@@ -42,16 +42,15 @@
     "@sonolus/sonolus.js-compiler": "~1.6.5"
   },
   "devDependencies": {
-    "@eslint/js": "^9.20.0",
-    "@types/eslint__js": "^8.42.3",
+    "@eslint/js": "^9.23.0",
     "@types/express": "^4.17.21",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.17.19",
-    "eslint": "^9.20.1",
-    "eslint-config-prettier": "^10.0.1",
-    "prettier": "^3.5.1",
+    "@types/node": "^20.17.28",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "typescript": "~5.7.3",
-    "typescript-eslint": "^8.24.1"
+    "typescript": "~5.8.2",
+    "typescript-eslint": "^8.28.0"
   }
 }
