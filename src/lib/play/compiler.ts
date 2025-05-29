@@ -103,6 +103,7 @@ declare global {
     const score: Compiler['score']
     type ConsecutiveScore = import('@sonolus/sonolus.js-compiler/play').ConsecutiveScore
     const screen: Compiler['screen']
+    const streams: Compiler['streams']
     const time: Compiler['time']
     const timeScaleChanges: Compiler['timeScaleChanges']
     type TimeScaleChange = import('@sonolus/sonolus.js-compiler/play').TimeScaleChange
