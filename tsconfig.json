@@ -9,7 +9,6 @@
         "strict": true,
         "skipLibCheck": true,
         "exactOptionalPropertyTypes": true,
-        "forceConsistentCasingInFileNames": true,
         "outDir": "./dist",
         "rootDir": "./src",
         "declaration": true,
