@@ -30,26 +30,26 @@
     "build": "tsc -p . && node ./build.js"
   },
   "dependencies": {
-    "esbuild": "^0.25.8",
-    "express": "^4.21.2",
-    "fs-extra": "^11.3.0"
+    "esbuild": "^0.27.2",
+    "express": "^4.22.1",
+    "fs-extra": "^11.3.3"
   },
   "peerDependencies": {
-    "@sonolus/core": "~7.14.0",
+    "@sonolus/core": "~7.14.2",
     "@sonolus/express": "~7.4.0",
     "@sonolus/free-pack": "~1.2.0",
     "@sonolus/sonolus.js-compiler": "~1.7.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.31.0",
-    "@types/express": "^4.17.23",
+    "@eslint/js": "^9.39.2",
+    "@types/express": "^4.17.25",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.16.5",
-    "eslint": "^9.31.0",
+    "@types/node": "^22.19.7",
+    "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.6.2",
-    "prettier-plugin-organize-imports": "^4.2.0",
-    "typescript": "~5.8.3",
-    "typescript-eslint": "^8.38.0"
+    "prettier": "^3.8.1",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.53.1"
   }
 }
