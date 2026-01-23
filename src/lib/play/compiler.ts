@@ -61,6 +61,8 @@ declare global {
     type Callback = import('@sonolus/sonolus.js-compiler/play').Callback
     const EntityState: Compiler['EntityState']
     type EntityState = import('@sonolus/sonolus.js-compiler/play').EntityState
+    const HapticType: Compiler['HapticType']
+    type HapticType = import('@sonolus/sonolus.js-compiler/play').HapticType
     const HorizontalAlign: Compiler['HorizontalAlign']
     type HorizontalAlign = import('@sonolus/sonolus.js-compiler/play').HorizontalAlign
     const Judgment: Compiler['Judgment']
