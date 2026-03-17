@@ -68,6 +68,7 @@ declare global {
     const entityInfos: Compiler['entityInfos']
     type EntityInfo = import('@sonolus/sonolus.js-compiler/preview').EntityInfo
     const native: Compiler['native']
+    const safeArea: Compiler['safeArea']
     const screen: Compiler['screen']
     const timeScaleChanges: Compiler['timeScaleChanges']
     type TimeScaleChange = import('@sonolus/sonolus.js-compiler/preview').TimeScaleChange

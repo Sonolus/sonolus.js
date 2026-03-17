@@ -104,6 +104,7 @@ declare global {
     const native: Compiler['native']
     const score: Compiler['score']
     type ConsecutiveScore = import('@sonolus/sonolus.js-compiler/play').ConsecutiveScore
+    const safeArea: Compiler['safeArea']
     const screen: Compiler['screen']
     const streams: Compiler['streams']
     const time: Compiler['time']

@@ -82,6 +82,7 @@ declare global {
     type JudgmentWindows = import('@sonolus/sonolus.js-compiler/tutorial').JudgmentWindows
     const native: Compiler['native']
     const navigation: Compiler['navigation']
+    const safeArea: Compiler['safeArea']
     const screen: Compiler['screen']
     const time: Compiler['time']
     const ui: Compiler['ui']
