@@ -35,10 +35,10 @@
     "fs-extra": "^11.3.5"
   },
   "peerDependencies": {
-    "@sonolus/core": "~7.15.1",
-    "@sonolus/express": "~7.5.1",
+    "@sonolus/core": "~7.15.2",
+    "@sonolus/express": "~7.5.2",
     "@sonolus/free-pack": "~1.2.0",
-    "@sonolus/sonolus.js-compiler": "~1.8.1"
+    "@sonolus/sonolus.js-compiler": "~1.8.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
