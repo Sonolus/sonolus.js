@@ -24,9 +24,9 @@ if (!parsed) {
 
 switch (parsed.mode) {
     case '--dev':
-        devCLI(parsed.configPath)
+        void devCLI(parsed.configPath)
         break
     case '--build':
-        buildCLI(parsed.configPath)
+        void buildCLI(parsed.configPath)
         break
 }

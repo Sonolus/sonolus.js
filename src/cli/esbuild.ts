@@ -1,5 +1,7 @@
-import { BuildOptions } from 'esbuild'
 import path from 'node:path'
+
+import { BuildOptions } from 'esbuild'
+
 import { FullSonolusCLIConfig } from './config.js'
 import { getEntryPath } from './utils.js'
 

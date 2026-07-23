@@ -1,8 +1,10 @@
+import { NetworkInterfaceInfo, networkInterfaces } from 'node:os'
+import { resolve } from 'node:path'
+
 import { Sonolus } from '@sonolus/express'
 import { packPath } from '@sonolus/free-pack'
 import express, { Express } from 'express'
-import { NetworkInterfaceInfo, networkInterfaces } from 'node:os'
-import { resolve } from 'node:path'
+
 import { res } from '../../../res/index.js'
 import { FullSonolusCLIConfig } from '../../config.js'
 

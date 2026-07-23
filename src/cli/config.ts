@@ -1,3 +1,6 @@
+import path from 'node:path'
+import { cpus } from 'os'
+
 import { compress } from '@sonolus/core'
 import { Sonolus } from '@sonolus/express'
 import { Artifacts as PlayArtifacts } from '@sonolus/sonolus.js-compiler/play'
@@ -6,8 +9,7 @@ import { Artifacts as TutorialArtifacts } from '@sonolus/sonolus.js-compiler/tut
 import { Artifacts as WatchArtifacts } from '@sonolus/sonolus.js-compiler/watch'
 import { BuildOptions } from 'esbuild'
 import fs from 'fs-extra'
-import path from 'node:path'
-import { cpus } from 'os'
+
 import { getConfigPath, importDefault } from './utils.js'
 
 type MaybePromise<T> = T | Promise<T>

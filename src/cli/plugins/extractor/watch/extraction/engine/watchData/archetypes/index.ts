@@ -1,4 +1,5 @@
 import { EngineWatchData, EngineWatchDataArchetype } from '@sonolus/core'
+
 import { empty, writeJson } from '../../../../../shared/utils.js'
 import { extractEngineWatchDataArchetypeCallbacks } from './callbacks.js'
 import { extractEngineWatchDataArchetypeImports } from './imports.js'

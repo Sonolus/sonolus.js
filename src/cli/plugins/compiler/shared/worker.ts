@@ -1,4 +1,5 @@
 import { parentPort } from 'node:worker_threads'
+
 import { Message } from './message.js'
 
 export const createWorker = <

@@ -1,5 +1,6 @@
 import * as esbuild from 'esbuild'
 import fs from 'fs-extra'
+
 import { loadConfig } from '../config.js'
 import { buildOptions } from '../esbuild.js'
 import { compilerPlugin } from '../plugins/compiler/index.js'
@@ -28,5 +29,5 @@ export const devCLI = async (configPath: string): Promise<void> => {
         }),
     )
 
-    context.watch()
+    void context.watch()
 }
