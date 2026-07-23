@@ -116,14 +116,12 @@ const compile = (config: TutorialSonolusCLIConfig, workerPool: WorkerPool) =>
                                     type: 'main',
                                 },
                                 ...message.counts.flatMap(({ callback, count }) =>
-                                    [...Array(count).keys()].map(
-                                        (index): CompileTask => ({
-                                            type: 'compile',
-                                            callback,
-                                            index,
-                                            optimizationLevel: config.optimizationLevel,
-                                        }),
-                                    ),
+                                    [...Array(count).keys()].map((index): CompileTask => ({
+                                        type: 'compile',
+                                        callback,
+                                        index,
+                                        optimizationLevel: config.optimizationLevel,
+                                    })),
                                 ),
                             ]
                             break

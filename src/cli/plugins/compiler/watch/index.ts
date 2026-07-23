@@ -130,14 +130,12 @@ const compile = (config: WatchSonolusCLIConfig, workerPool: WorkerPool) =>
                                     optimizationLevel: config.optimizationLevel,
                                 },
                                 ...message.archetypes.flatMap((archetype) =>
-                                    Object.values(Callback).map(
-                                        (callback): CompileTask => ({
-                                            type: 'compile',
-                                            archetype,
-                                            callback,
-                                            optimizationLevel: config.optimizationLevel,
-                                        }),
-                                    ),
+                                    Object.values(Callback).map((callback): CompileTask => ({
+                                        type: 'compile',
+                                        archetype,
+                                        callback,
+                                        optimizationLevel: config.optimizationLevel,
+                                    })),
                                 ),
                             ]
                             break

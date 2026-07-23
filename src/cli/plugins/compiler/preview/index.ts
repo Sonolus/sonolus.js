@@ -124,14 +124,12 @@ const compile = (config: PreviewSonolusCLIConfig, workerPool: WorkerPool) =>
                                     type: 'main',
                                 },
                                 ...message.archetypes.flatMap((archetype) =>
-                                    Object.values(Callback).map(
-                                        (callback): CompileTask => ({
-                                            type: 'compile',
-                                            archetype,
-                                            callback,
-                                            optimizationLevel: config.optimizationLevel,
-                                        }),
-                                    ),
+                                    Object.values(Callback).map((callback): CompileTask => ({
+                                        type: 'compile',
+                                        archetype,
+                                        callback,
+                                        optimizationLevel: config.optimizationLevel,
+                                    })),
                                 ),
                             ]
                             break

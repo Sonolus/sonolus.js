@@ -1,11 +1,13 @@
 import { Intrinsic } from '@sonolus/sonolus.js-compiler/internal/intrinsic/index.js'
 
 type PassThroughKeys<T> = (keyof {
-    [K in keyof T as K extends string
-        ? T[K] extends (...args: never[]) => unknown
-            ? K
+    [
+        K in keyof T as K extends string
+            ? T[K] extends (...args: never[]) => unknown
+                ? K
+                : never
             : never
-        : never]: never
+    ]: never
 })[]
 
 export const passThrough = <T>(target: T, keys: PassThroughKeys<T>): void => {
@@ -25,13 +27,15 @@ export const passThrough = <T>(target: T, keys: PassThroughKeys<T>): void => {
 }
 
 type ImplementProps<T> = Partial<{
-    [K in keyof T as K extends string
-        ? T[K] extends (...args: never[]) => unknown
-            ? K extends 'valueOf'
-                ? never
-                : K
+    [
+        K in keyof T as K extends string
+            ? T[K] extends (...args: never[]) => unknown
+                ? K extends 'valueOf'
+                    ? never
+                    : K
+                : never
             : never
-        : never]: T[K]
+    ]: T[K]
 }>
 
 export const implement = <T>(target: T, props: ImplementProps<T>): void => {
