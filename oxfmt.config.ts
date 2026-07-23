@@ -9,8 +9,8 @@ export default defineConfig({
         '**/*.*',
 
         '!build.js',
-        '!eslint.config.js',
         '!oxfmt.config.ts',
+        '!oxlint.config.ts',
         '!README.md',
 
         '!src/**/*.*',

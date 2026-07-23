@@ -29,5 +29,5 @@ export const devCLI = async (configPath: string): Promise<void> => {
         }),
     )
 
-    context.watch()
+    void context.watch()
 }

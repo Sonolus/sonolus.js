@@ -47,7 +47,7 @@ const compile = (config: WatchSonolusCLIConfig, workerPool: WorkerPool) =>
 
         const terminate = (error?: unknown) => {
             for (const { worker } of managedWorkers) {
-                worker.terminate()
+                void worker.terminate()
             }
 
             if (config.mode === 'dev') {
@@ -103,7 +103,7 @@ const compile = (config: WatchSonolusCLIConfig, workerPool: WorkerPool) =>
             return
         }
 
-        workerPool.obtain(count).then((workers) => {
+        void workerPool.obtain(count).then((workers) => {
             for (const worker of workers) {
                 const managedWorker: ManagedWorker = {
                     worker,
@@ -160,7 +160,7 @@ const compile = (config: WatchSonolusCLIConfig, workerPool: WorkerPool) =>
                     }
 
                     managedWorker.state = 'idle'
-                    onUpdate()
+                    void onUpdate()
                 })
 
                 managedWorker.worker.on('error', terminate)
