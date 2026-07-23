@@ -1,3 +1,5 @@
+import { Worker } from 'node:worker_threads'
+
 import {
     Callback,
     CompileTask,
@@ -7,7 +9,7 @@ import {
     assemble,
 } from '@sonolus/sonolus.js-compiler/preview'
 import { Plugin } from 'esbuild'
-import { Worker } from 'node:worker_threads'
+
 import { PreviewSonolusCLIConfig } from '../../../config.js'
 import { getOutfile } from '../../../esbuild.js'
 import { createPlugin, stopwatch } from '../../utils.js'
@@ -124,12 +126,14 @@ const compile = (config: PreviewSonolusCLIConfig, workerPool: WorkerPool) =>
                                     type: 'main',
                                 },
                                 ...message.archetypes.flatMap((archetype) =>
-                                    Object.values(Callback).map((callback): CompileTask => ({
-                                        type: 'compile',
-                                        archetype,
-                                        callback,
-                                        optimizationLevel: config.optimizationLevel,
-                                    })),
+                                    Object.values(Callback).map(
+                                        (callback): CompileTask => ({
+                                            type: 'compile',
+                                            archetype,
+                                            callback,
+                                            optimizationLevel: config.optimizationLevel,
+                                        }),
+                                    ),
                                 ),
                             ]
                             break

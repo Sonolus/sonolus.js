@@ -1,4 +1,5 @@
 import { Plugin } from 'esbuild'
+
 import { FullSonolusCLIConfig } from '../../config.js'
 import { playCompilerPlugin } from './play/index.js'
 import { previewCompilerPlugin } from './preview/index.js'

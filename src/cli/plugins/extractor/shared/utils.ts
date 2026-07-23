@@ -1,6 +1,7 @@
+import path from 'node:path'
+
 import { decompress } from '@sonolus/core'
 import fs from 'fs-extra'
-import path from 'node:path'
 
 export const readJsonResource = async <T>(paths: string[]): Promise<T> =>
     await decompress(await fs.readFile(path.join(...paths)))

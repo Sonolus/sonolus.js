@@ -1,3 +1,5 @@
+import { Worker } from 'node:worker_threads'
+
 import {
     CompileTask,
     CompileTaskArtifacts,
@@ -6,7 +8,7 @@ import {
     assemble,
 } from '@sonolus/sonolus.js-compiler/tutorial'
 import { Plugin } from 'esbuild'
-import { Worker } from 'node:worker_threads'
+
 import { TutorialSonolusCLIConfig } from '../../../config.js'
 import { getOutfile } from '../../../esbuild.js'
 import { createPlugin, stopwatch } from '../../utils.js'
@@ -116,12 +118,14 @@ const compile = (config: TutorialSonolusCLIConfig, workerPool: WorkerPool) =>
                                     type: 'main',
                                 },
                                 ...message.counts.flatMap(({ callback, count }) =>
-                                    [...Array(count).keys()].map((index): CompileTask => ({
-                                        type: 'compile',
-                                        callback,
-                                        index,
-                                        optimizationLevel: config.optimizationLevel,
-                                    })),
+                                    [...Array(count).keys()].map(
+                                        (index): CompileTask => ({
+                                            type: 'compile',
+                                            callback,
+                                            index,
+                                            optimizationLevel: config.optimizationLevel,
+                                        }),
+                                    ),
                                 ),
                             ]
                             break

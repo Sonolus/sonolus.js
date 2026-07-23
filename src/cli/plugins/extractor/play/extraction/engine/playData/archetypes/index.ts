@@ -1,4 +1,5 @@
 import { EnginePlayData, EnginePlayDataArchetype } from '@sonolus/core'
+
 import { empty, writeJson } from '../../../../../shared/utils.js'
 import { extractEnginePlayDataArchetypeCallbacks } from './callbacks.js'
 import { extractEnginePlayDataArchetypeExports } from './exports.js'

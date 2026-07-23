@@ -1,4 +1,5 @@
 import { Plugin } from 'esbuild'
+
 import { FullSonolusCLIConfig } from '../../config.js'
 import { playExtractorPlugin } from './play/index.js'
 import { previewExtractorPlugin } from './preview/index.js'

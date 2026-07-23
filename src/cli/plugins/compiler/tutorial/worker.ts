@@ -4,6 +4,7 @@ import {
     buildCompileTask,
     buildMainTask,
 } from '@sonolus/sonolus.js-compiler/tutorial'
+
 import { getEntryPath, importDefault } from '../../../utils.js'
 import { createWorker } from '../shared/worker.js'
 import { MainToWorkerMessage, WorkerToMainMessage } from './message.js'

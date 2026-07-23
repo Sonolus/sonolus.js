@@ -1,4 +1,5 @@
 import { EnginePlayData } from '@sonolus/core'
+
 import { writeJson } from '../../../../shared/utils.js'
 
 export const extractEnginePlayDataBuckets = async (

@@ -4,6 +4,7 @@ import {
     EngineWatchDataArchetypeCallback,
 } from '@sonolus/core'
 import { Callback } from '@sonolus/sonolus.js-compiler/watch'
+
 import { createNodePrinter } from '../../../../../shared/printer.js'
 import { writeJs } from '../../../../../shared/utils.js'
 
