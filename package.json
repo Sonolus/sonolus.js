@@ -24,10 +24,10 @@
     "dist"
   ],
   "scripts": {
-    "check-type": "tsc -p . --noEmit",
+    "check-type": "tsc -b . --noEmit",
     "check-lint": "oxlint",
     "check-format": "oxfmt --check",
-    "build": "tsc -p . && node ./build.js"
+    "build": "tsc -b . && node ./build.js"
   },
   "dependencies": {
     "esbuild": "^0.28.2",

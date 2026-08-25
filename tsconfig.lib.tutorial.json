@@ -1,0 +1,4 @@
+{
+    "extends": "./tsconfig.base.json",
+    "files": ["./src/lib/index.tutorial.ts", "./src/cli/plugins/compiler/tutorial/worker-preload.ts"]
+}
