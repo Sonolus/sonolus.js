@@ -1,0 +1,4 @@
+{
+    "extends": "./tsconfig.base.json",
+    "files": ["./src/lib/index.play.ts", "./src/cli/plugins/compiler/play/worker-preload.ts"]
+}
