@@ -12,14 +12,14 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
     const sonolus = new Sonolus({})
     sonolus.load(packPath)
 
-    sonolus.title = { en: 'Dev Server' }
+    sonolus.title = 'Dev Server'
 
     sonolus.engine.items.push({
         name: 'dev',
         version: 13,
-        title: { en: 'Dev Engine' },
-        subtitle: { en: 'Unknown' },
-        author: { en: 'Unknown' },
+        title: 'Dev Engine',
+        subtitle: 'Unknown',
+        author: 'Unknown',
         tags: [],
         description: {},
         thumbnail: empty,
@@ -43,9 +43,9 @@ export const serve = async (config: FullSonolusCLIConfig): Promise<void> => {
         useBackground: { useDefault: true },
         useEffect: { useDefault: true },
         useParticle: { useDefault: true },
-        title: { en: 'Dev Level' },
-        artists: { en: 'Unknown' },
-        author: { en: 'Unknown' },
+        title: 'Dev Level',
+        artists: 'Unknown',
+        author: 'Unknown',
         tags: [],
         description: {},
         cover: empty,
